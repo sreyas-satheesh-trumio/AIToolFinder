@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\training\\trumio\\dotnet\\Apps\\AIToolFinderApp\\AIToolFinderApp.csproj": {}
+    "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj": {}
   },
   "projects": {
-    "C:\\training\\trumio\\dotnet\\Apps\\AIToolFinderApp\\AIToolFinderApp.csproj": {
+    "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\training\\trumio\\dotnet\\Apps\\AIToolFinderApp\\AIToolFinderApp.csproj",
+        "projectUniqueName": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
         "projectName": "AIToolFinderApp",
-        "projectPath": "C:\\training\\trumio\\dotnet\\Apps\\AIToolFinderApp\\AIToolFinderApp.csproj",
-        "packagesPath": "C:\\Users\\304573\\.nuget\\packages\\",
-        "outputPath": "C:\\training\\trumio\\dotnet\\Apps\\AIToolFinderApp\\obj\\",
+        "projectPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
+        "packagesPath": "C:\\Users\\304503\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\304573\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\304503\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

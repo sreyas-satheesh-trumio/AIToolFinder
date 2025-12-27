@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "Name": "ChatGPT",
+    "UseCase": "Text Generation",
+    "Category": "NLP",
+    "PricingType": "Free",
+    "Rating": 4.5
+  }
+]
