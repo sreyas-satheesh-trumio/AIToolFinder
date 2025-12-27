@@ -17,10 +17,5 @@ public class ReviewsController : ControllerBase
         _reviewRepo.Write(reviews);
 
         return Ok("Review submitted for approval");
-<<<<<<< HEAD
           }
 }
-=======
-    }
-}
->>>>>>> 3b55425e56afc732f56159922a348d5cbb93cc52

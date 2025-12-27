@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\304520\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\304520\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
-        "projectName": "AIToolFinderApp",
-        "projectPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
-        "packagesPath": "C:\\Users\\304503\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\304503\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 3b55425e56afc732f56159922a348d5cbb93cc52
         ],
         "originalTargetFrameworks": [
           "net8.0"

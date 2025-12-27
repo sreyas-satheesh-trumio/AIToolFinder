@@ -11,21 +11,13 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AIToolFinderApp
 build_property.RootNamespace = AIToolFinderApp
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\304520\Documents\GitHub\AIToolFinder\
-=======
-build_property.ProjectDir = C:\Users\304503\Documents\GitHub\AIToolFinder\
->>>>>>> 3b55425e56afc732f56159922a348d5cbb93cc52
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\304520\Documents\GitHub\AIToolFinder
-=======
-build_property.MSBuildProjectDirectory = C:\Users\304503\Documents\GitHub\AIToolFinder
->>>>>>> 3b55425e56afc732f56159922a348d5cbb93cc52
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
