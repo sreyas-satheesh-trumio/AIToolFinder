@@ -15,12 +15,6 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/10.0.0-preview.3.25172.1": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.AspNetCore.OpenApi.targets": {}
-        }
-      },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "type": "package",
         "compile": {
@@ -367,6 +361,20 @@
           "lib/net8.0/_._": {}
         }
       },
+<<<<<<< HEAD
+=======
+      "Microsoft.Extensions.ApiDescription.Server/8.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Extensions.ApiDescription.Server.props": {},
+          "build/Microsoft.Extensions.ApiDescription.Server.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.props": {},
+          "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
+        }
+      },
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       "Microsoft.Extensions.DependencyModel/8.0.0": {
         "type": "package",
         "compile": {
@@ -383,7 +391,11 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+<<<<<<< HEAD
       "Microsoft.OpenApi/3.1.1": {
+=======
+      "Microsoft.OpenApi/2.3.0": {
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.OpenApi.dll": {
@@ -439,6 +451,72 @@
             "related": ".xml"
           }
         }
+      },
+      "Swashbuckle.AspNetCore/10.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.ApiDescription.Server": "8.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "10.1.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "10.1.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "10.1.0"
+        },
+        "build": {
+          "build/Swashbuckle.AspNetCore.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Swashbuckle.AspNetCore.props": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/10.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.OpenApi": "2.3.0"
+        },
+        "compile": {
+          "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/10.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "10.1.0"
+        },
+        "compile": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/10.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "System.CodeDom/4.4.0": {
         "type": "package",
@@ -574,24 +652,6 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
-      ]
-    },
-    "Microsoft.AspNetCore.OpenApi/10.0.0-preview.3.25172.1": {
-      "sha512": "o2A0jvacBI5pyXkGwe5wO09JkBvvUAAbjF/UeAzSvw7uZ1vDBo3QD++vK8BOewf3s8/YNSwsgVerWmSAG2XPeg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.openapi/10.0.0-preview.3.25172.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "THIRD-PARTY-NOTICES.TXT",
-        "analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll",
-        "build/Microsoft.AspNetCore.OpenApi.targets",
-        "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll",
-        "lib/net10.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.10.0.0-preview.3.25172.1.nupkg.sha512",
-        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -1143,6 +1203,71 @@
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
       ]
     },
+<<<<<<< HEAD
+=======
+    "Microsoft.Extensions.ApiDescription.Server/8.0.0": {
+      "sha512": "jDM3a95WerM8g6IcMiBXq1qRS9dqmEUpgnCk2DeMWpPkYtp1ia+CkXabOnK93JmhVlUmv8l9WMPsCSUm+WqkIA==",
+      "type": "package",
+      "path": "microsoft.extensions.apidescription.server/8.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "build/Microsoft.Extensions.ApiDescription.Server.props",
+        "build/Microsoft.Extensions.ApiDescription.Server.targets",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.props",
+        "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets",
+        "microsoft.extensions.apidescription.server.8.0.0.nupkg.sha512",
+        "microsoft.extensions.apidescription.server.nuspec",
+        "tools/Newtonsoft.Json.dll",
+        "tools/dotnet-getdocument.deps.json",
+        "tools/dotnet-getdocument.dll",
+        "tools/dotnet-getdocument.runtimeconfig.json",
+        "tools/net462-x86/GetDocument.Insider.exe",
+        "tools/net462-x86/GetDocument.Insider.exe.config",
+        "tools/net462-x86/System.Buffers.dll",
+        "tools/net462-x86/System.Diagnostics.DiagnosticSource.dll",
+        "tools/net462-x86/System.Memory.dll",
+        "tools/net462-x86/System.Numerics.Vectors.dll",
+        "tools/net462-x86/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net462/GetDocument.Insider.exe",
+        "tools/net462/GetDocument.Insider.exe.config",
+        "tools/net462/System.Buffers.dll",
+        "tools/net462/System.Diagnostics.DiagnosticSource.dll",
+        "tools/net462/System.Memory.dll",
+        "tools/net462/System.Numerics.Vectors.dll",
+        "tools/net462/System.Runtime.CompilerServices.Unsafe.dll",
+        "tools/net8.0/GetDocument.Insider.deps.json",
+        "tools/net8.0/GetDocument.Insider.dll",
+        "tools/net8.0/GetDocument.Insider.exe",
+        "tools/net8.0/GetDocument.Insider.runtimeconfig.json",
+        "tools/net8.0/Microsoft.AspNetCore.Connections.Abstractions.dll",
+        "tools/net8.0/Microsoft.AspNetCore.Connections.Abstractions.xml",
+        "tools/net8.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll",
+        "tools/net8.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.xml",
+        "tools/net8.0/Microsoft.AspNetCore.Http.Features.dll",
+        "tools/net8.0/Microsoft.AspNetCore.Http.Features.xml",
+        "tools/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.Features.dll",
+        "tools/net8.0/Microsoft.Extensions.Features.xml",
+        "tools/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "tools/net8.0/Microsoft.Extensions.Options.dll",
+        "tools/net8.0/Microsoft.Extensions.Primitives.dll",
+        "tools/net8.0/Microsoft.Net.Http.Headers.dll",
+        "tools/net8.0/Microsoft.Net.Http.Headers.xml",
+        "tools/net8.0/System.IO.Pipelines.dll",
+        "tools/netcoreapp2.1/GetDocument.Insider.deps.json",
+        "tools/netcoreapp2.1/GetDocument.Insider.dll",
+        "tools/netcoreapp2.1/GetDocument.Insider.runtimeconfig.json",
+        "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
+      ]
+    },
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
     "Microsoft.Extensions.DependencyModel/8.0.0": {
       "sha512": "NSmDw3K0ozNDgShSIpsZcbFIzBX4w28nDag+TfaQujkXGazBm+lid5onlWoCBy4VsLxqnnKjEBbGSJVWJMf43g==",
       "type": "package",
@@ -1173,10 +1298,17 @@
         "useSharedDesignerContext.txt"
       ]
     },
+<<<<<<< HEAD
     "Microsoft.OpenApi/3.1.1": {
       "sha512": "/NcgAtqQzs6Djm7sJ3DYaFTTUiXOVmJVAljaQ+IQFV5ZiRGheER8OKLlHgke+Yb0CquiqtdgA4DN+98+Uu9G/Q==",
       "type": "package",
       "path": "microsoft.openapi/3.1.1",
+=======
+    "Microsoft.OpenApi/2.3.0": {
+      "sha512": "5RZpjyt0JMmoc/aEgY9c1vE5pusdDGvkPl9qKIy9KFbRiIXD+w7gBJxX+unSjzzOcfgRoYxnO4okZyqDAL2WEw==",
+      "type": "package",
+      "path": "microsoft.openapi/2.3.0",
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1187,7 +1319,11 @@
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
+<<<<<<< HEAD
         "microsoft.openapi.3.1.1.nupkg.sha512",
+=======
+        "microsoft.openapi.2.3.0.nupkg.sha512",
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
         "microsoft.openapi.nuspec"
       ]
     },
@@ -1240,6 +1376,83 @@
         "npgsql.entityframeworkcore.postgresql.8.0.0.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
+      ]
+    },
+    "Swashbuckle.AspNetCore/10.1.0": {
+      "sha512": "CvOffaJKStoP0hdfCIX4V/9wuwRkSOJd+PehGo/Y5ALh0WYliLwuMlyh1BbgG7uQtJNe1k5P7QIhIaFfZ/aJAw==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore/10.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Swashbuckle.AspNetCore.props",
+        "buildMultiTargeting/Swashbuckle.AspNetCore.props",
+        "docs/package-readme.md",
+        "swashbuckle.aspnetcore.10.1.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.Swagger/10.1.0": {
+      "sha512": "9Kp35Jhkzw73UXnvgGWVgRjvfGx5h1V4fdL9JcPZMKoTyO/bnKD/1i86n8u2p+rVTDed0cDSH4PKbX4WicZ/gg==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swagger/10.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net10.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net10.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net10.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/net8.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net8.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net8.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "package-readme.md",
+        "swashbuckle.aspnetcore.swagger.10.1.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.swagger.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/10.1.0": {
+      "sha512": "XV2gyKmjWs5K5QaSq9rNYtO/E7vr/RcyBkMbbCVUlUtI5OY0HKj260Wee9zsJ7scJf7kPCxeseBiUMRp67ZWxA==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggergen/10.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "package-readme.md",
+        "swashbuckle.aspnetcore.swaggergen.10.1.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggergen.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/10.1.0": {
+      "sha512": "ilUsTvGA9hO1ulR7ibdWMWSg3438Iu+pDFcEYUorp+/ClHwaHFdpp/ATfBsFXv2sIRVDbQlEwd5BWBOdMdtKCA==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggerui/10.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net10.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net8.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerUI.pdb",
+        "lib/net9.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "package-readme.md",
+        "swashbuckle.aspnetcore.swaggerui.10.1.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
     "System.CodeDom/4.4.0": {
@@ -1398,19 +1611,28 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.AspNetCore.OpenApi >= 10.0.0-preview.3.25172.1",
       "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0",
+<<<<<<< HEAD
       "Microsoft.OpenApi >= 3.1.1",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\304503\\.nuget\\packages\\": {}
+=======
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0",
+      "Swashbuckle.AspNetCore >= 10.1.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\304561\\.nuget\\packages\\": {}
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
       "projectName": "AIToolFinderApp",
       "projectPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
@@ -1419,6 +1641,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\304503\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
+      "projectName": "AIToolFinderApp",
+      "projectPath": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
+      "packagesPath": "C:\\Users\\304561\\.nuget\\packages\\",
+      "outputPath": "C:\\AI\\AIToolFinder\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\304561\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1448,10 +1680,6 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": {
-            "target": "Package",
-            "version": "[10.0.0-preview.3.25172.1, )"
-          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.0, )"
@@ -1469,6 +1697,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[10.1.0, )"
           }
         },
         "imports": [
@@ -1940,5 +2172,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\AI\\AIToolFinder\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }
