@@ -1,15 +1,21 @@
-using AIToolFinderApp.Services;
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<IToolService, ToolService>();
-builder.Services.AddScoped<IReviewService, ReviewService>();
+=======
+var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+
 
 var app = builder.Build();
 
-app.UseRouting();
+
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
-app.UseStaticFiles();
 
 app.Run();
