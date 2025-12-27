@@ -361,8 +361,6 @@
           "lib/net8.0/_._": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.Extensions.ApiDescription.Server/8.0.0": {
         "type": "package",
         "build": {
@@ -374,7 +372,6 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       "Microsoft.Extensions.DependencyModel/8.0.0": {
         "type": "package",
         "compile": {
@@ -391,11 +388,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
       "Microsoft.OpenApi/3.1.1": {
-=======
-      "Microsoft.OpenApi/2.3.0": {
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.OpenApi.dll": {
@@ -1203,8 +1196,6 @@
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
       ]
     },
-<<<<<<< HEAD
-=======
     "Microsoft.Extensions.ApiDescription.Server/8.0.0": {
       "sha512": "jDM3a95WerM8g6IcMiBXq1qRS9dqmEUpgnCk2DeMWpPkYtp1ia+CkXabOnK93JmhVlUmv8l9WMPsCSUm+WqkIA==",
       "type": "package",
@@ -1267,7 +1258,6 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
     "Microsoft.Extensions.DependencyModel/8.0.0": {
       "sha512": "NSmDw3K0ozNDgShSIpsZcbFIzBX4w28nDag+TfaQujkXGazBm+lid5onlWoCBy4VsLxqnnKjEBbGSJVWJMf43g==",
       "type": "package",
@@ -1298,17 +1288,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
     "Microsoft.OpenApi/3.1.1": {
       "sha512": "/NcgAtqQzs6Djm7sJ3DYaFTTUiXOVmJVAljaQ+IQFV5ZiRGheER8OKLlHgke+Yb0CquiqtdgA4DN+98+Uu9G/Q==",
       "type": "package",
       "path": "microsoft.openapi/3.1.1",
-=======
-    "Microsoft.OpenApi/2.3.0": {
-      "sha512": "5RZpjyt0JMmoc/aEgY9c1vE5pusdDGvkPl9qKIy9KFbRiIXD+w7gBJxX+unSjzzOcfgRoYxnO4okZyqDAL2WEw==",
-      "type": "package",
-      "path": "microsoft.openapi/2.3.0",
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1319,11 +1302,7 @@
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
-<<<<<<< HEAD
         "microsoft.openapi.3.1.1.nupkg.sha512",
-=======
-        "microsoft.openapi.2.3.0.nupkg.sha512",
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
         "microsoft.openapi.nuspec"
       ]
     },
@@ -1613,26 +1592,17 @@
     "net8.0": [
       "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0",
-<<<<<<< HEAD
       "Microsoft.OpenApi >= 3.1.1",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0"
-    ]
-  },
-  "packageFolders": {
-    "C:\\Users\\304503\\.nuget\\packages\\": {}
-=======
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.0",
       "Swashbuckle.AspNetCore >= 10.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\304561\\.nuget\\packages\\": {}
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
+    "C:\\Users\\304503\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
       "projectName": "AIToolFinderApp",
       "projectPath": "C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\AIToolFinderApp.csproj",
@@ -1641,16 +1611,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\304503\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
-      "projectName": "AIToolFinderApp",
-      "projectPath": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
-      "packagesPath": "C:\\Users\\304561\\.nuget\\packages\\",
-      "outputPath": "C:\\AI\\AIToolFinder\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\304561\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2178,7 +2138,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\AI\\AIToolFinder\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+      "message": "Problem reading the cache file C:\\Users\\304503\\Documents\\GitHub\\AIToolFinder\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
     }
   ]
 }
