@@ -11,13 +11,21 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AIToolFinderApp
 build_property.RootNamespace = AIToolFinderApp
+<<<<<<< HEAD
 build_property.ProjectDir = C:\training\trumio\dotnet\Apps\AIToolFinderApp\
+=======
+build_property.ProjectDir = C:\Users\304520\Documents\GitHub\AIToolFinder\
+>>>>>>> 6c887f3b926b3f9fc8e80d2777be22c2389034db
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\training\trumio\dotnet\Apps\AIToolFinderApp
+=======
+build_property.MSBuildProjectDirectory = C:\Users\304520\Documents\GitHub\AIToolFinder
+>>>>>>> 6c887f3b926b3f9fc8e80d2777be22c2389034db
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
