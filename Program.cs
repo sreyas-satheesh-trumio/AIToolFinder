@@ -1,10 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("NeonDb")));
 
 var app = builder.Build();
-
-
-app.MapControllers();
 app.UseRouting();
-
+app.MapControllers();
+app.UseStaticFiles();
 app.Run();
