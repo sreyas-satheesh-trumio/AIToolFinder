@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68d0bd427624f72d646125d9e00190f484a6f3f2")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0adfe3c21d20a505afaff96acab1acadf00b3314")]
+>>>>>>> 160f0d6ddc8769af05a4fad86f637d821599352d
 [assembly: System.Reflection.AssemblyProductAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,56 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api")] // base route matching lab example
-public class ReviewController : ControllerBase
+public class ReviewsController : ControllerBase
 {
-    private readonly IReviewService _reviewService;
+    private readonly JsonFileService<Review> _reviewRepo = new("Data/reviews.json");
+    private readonly ToolService _toolService = new();
 
-    public ReviewController(IReviewService reviewService)
-    {
-        _reviewService = reviewService;
-    }
-
-    // POST /api/review - Submit a new review
     [HttpPost("review")]
-    public IActionResult SubmitReview([FromBody] ReviewDto reviewDto)
+    public IActionResult SubmitReview(Review review)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        review.Id = Guid.NewGuid().GetHashCode();
+        review.Status = "Pending";
 
-        var review = _reviewService.SubmitReview(reviewDto);
+        var reviews = _reviewRepo.Read();
+        reviews.Add(review);
+        _reviewRepo.Write(reviews);
 
-        if (review == null)
-            return NotFound(new { message = "Tool not found" });
-
-        return CreatedAtAction(nameof(GetReviewsForTool), new { toolId = review.ToolId }, review);
+        return Ok("Review submitted for approval");
     }
-
-    // GET /api/review/tool/{toolId} - Get all reviews for a tool
-    [HttpGet("review/tool/{toolId}")]
-    public IActionResult GetReviewsForTool(Guid toolId)
-    {
-        var reviews = _reviewService.GetReviewsForTool(toolId);
-        if (reviews == null || !reviews.Any())
-            return NotFound(new { message = "No reviews found for this tool" });
-
-        return Ok(reviews);
-    }
-
-[HttpPost("review/{reviewId}")]
-public IActionResult ApproveReview(int reviewId, [FromBody] ReviewApprovalDto approvalDto)
-{
-    if (approvalDto == null || !ModelState.IsValid)
-        return BadRequest(new { message = "Approval status is required and must be valid." });
-
-    var review = _reviewService.SetApprovalStatus(reviewId, approvalDto.Status);
-
-    if (review == null)
-        return NotFound(new { message = "Review not found" });
-
-    
-    return Ok(review);
-}
-
-
 }

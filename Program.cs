@@ -1,15 +1,21 @@
-using AIToolFinderApp.Services;
-using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<IToolService, ToolService>();
-builder.Services.AddScoped<IReviewService, ReviewService>();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseRouting();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AI Tool Finder API v1");
+    c.RoutePrefix = string.Empty; 
+});
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
-app.UseStaticFiles();
 
 app.Run();

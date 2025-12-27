@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\304561\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj": {}
+  },
+  "projects": {
+    "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj",
+        "projectName": "AIToolFinderApp",
+        "projectPath": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj",
+        "packagesPath": "C:\\Users\\304573\\.nuget\\packages\\",
+        "outputPath": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\304573\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 160f0d6ddc8769af05a4fad86f637d821599352d
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -44,10 +61,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[10.0.0-preview.3.25172.1, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -61,6 +74,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.0, )"
             }
           },
           "imports": [
