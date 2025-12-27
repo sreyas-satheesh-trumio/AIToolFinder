@@ -118,3 +118,5 @@ C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.s
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
