@@ -122,8 +122,6 @@ C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.s
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.AssemblyReference.cache
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfoInputs.cache
@@ -230,3 +228,4 @@ C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.genruntimeconfig.cache
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\ref\AIToolFinderApp.dll
 >>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
+C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.MvcApplicationPartsAssemblyInfo.cs
