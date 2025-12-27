@@ -1,3 +1,5 @@
+using AIToolFinderApp.Services;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 
