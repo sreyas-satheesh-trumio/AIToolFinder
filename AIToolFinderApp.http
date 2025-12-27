@@ -1,0 +1,6 @@
+@AIToolFinderApp_HostAddress = http://localhost:5299
+
+GET {{AIToolFinderApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
