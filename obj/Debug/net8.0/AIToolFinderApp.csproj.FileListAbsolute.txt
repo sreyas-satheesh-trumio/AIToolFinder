@@ -108,6 +108,8 @@ C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.sourcelink.json
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
 C:\AI\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.AssemblyReference.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfoInputs.cache
@@ -115,8 +117,3 @@ C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.A
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.CoreCompileInputs.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.sourcelink.json
-C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
-C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
-C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
