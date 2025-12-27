@@ -1,6 +1,5 @@
-using AIToolFinderApp.Models;
+
 using AIToolFinderApp.Services;
-using AIToolFinderApp.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AIToolFinderApp.Controllers
@@ -32,8 +31,6 @@ namespace AIToolFinderApp.Controllers
             return Ok(tools);
         }
 
-        // READ BY ID
-        // GET: api/tools/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetToolById(int id)
         {
@@ -48,8 +45,6 @@ namespace AIToolFinderApp.Controllers
             }
         }
 
-        // UPDATE
-        // PUT: api/tools/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTool(int id, [FromBody] AITool dto)
         {
@@ -64,8 +59,7 @@ namespace AIToolFinderApp.Controllers
             }
         }
 
-        // DELETE
-        // DELETE: api/tools/{id}
+ 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTool(int id)
         {
