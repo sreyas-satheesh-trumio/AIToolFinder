@@ -1597,16 +1597,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\304561\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\304573\\.nuget\\packages\\": {}
->>>>>>> 160f0d6ddc8769af05a4fad86f637d821599352d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
       "projectName": "AIToolFinderApp",
       "projectPath": "C:\\AI\\AIToolFinder\\AIToolFinderApp.csproj",
@@ -1615,16 +1610,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\304561\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj",
-      "projectName": "AIToolFinderApp",
-      "projectPath": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\AIToolFinderApp.csproj",
-      "packagesPath": "C:\\Users\\304573\\.nuget\\packages\\",
-      "outputPath": "C:\\training\\trumio\\dotnet\\Apps\\Sat\\AIToolFinder\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\304573\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 160f0d6ddc8769af05a4fad86f637d821599352d
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2142,5 +2127,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\AI\\AIToolFinder\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }
