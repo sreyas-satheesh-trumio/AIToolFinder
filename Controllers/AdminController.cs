@@ -1,95 +1,80 @@
-using AIToolFinderApp.Services;
+
 using Microsoft.AspNetCore.Mvc;
-
-namespace AIToolFinder.Controllers
+[ApiController]
+[Route("admin")]
+public class AdminController : ControllerBase
 {
-    [ApiController]
-    [Route("api/admin")]
-    public class AdminController : ControllerBase
+    // Repository to read and write AI tools from JSON file
+    private readonly JsonFileService<AITool> _toolRepo = new("Data/tools.json");
+
+    // Repository to read and write reviews from JSON file
+    private readonly JsonFileService<Review> _reviewRepo = new("Data/reviews.json");
+
+    private readonly ToolService _toolService = new();
+
+
+    // POST: admin/tool
+    // Adds a new AI tool to the system
+    [HttpPost("tool")]
+    public IActionResult AddTool(AITool tool)
     {
-        private readonly IToolService _toolService;
+        // Read existing tools from JSON file
+        var tools = _toolRepo.Read();
 
-        public AdminController(IToolService toolService)
-        {
-            _toolService = toolService;
-        }
+        // Generate a new ID for the tool
+        tool.Id = tools.Count + 1;
 
-        // POST: api/admin/addtools
-        [HttpPost("tool")]
-        public IActionResult AddTool([FromBody] CreateToolDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        // Add the new tool to the list
+        tools.Add(tool);
 
-            var createdTool = _toolService.AddToolAsync(dto);
+        // Save updated tool list back to JSON file
+        _toolRepo.Write(tools);
 
-            return Ok(new
-            {
-                Message = "AI tool added successfully",
-                Tool = createdTool
-            });
-        }
-
-        [HttpPut("tool/{id}")]
-        public async Task<IActionResult> UpdateTool(int id, [FromBody] UpdateToolDto tool)
-        {
-            if (tool == null)
-                return BadRequest("Cant update the data to NULL values.");
-
-            var newTool = new AITool
-            {
-                Id = id,
-                ToolName = tool.ToolName!,
-                UseCase = tool.UseCase!,
-                Category = tool.Category!,
-                PricingType = tool.Pricing ?? PricingType.Free
-            };
-
-            try
-            {
-                var updatedTool = await _toolService.UpdateToolAsync(id, newTool);
-                return Ok(updatedTool);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-
-        [HttpDelete("tool/{id}")]
-        public async Task<IActionResult> DeleteTool(int id)
-        {
-            try
-            {
-                var deletedTool = await _toolService.DeleteToolAsync(id);
-                return Ok(new
-                {
-                    Message = "AI tool deleted successfully",
-                    Tool = deletedTool
-                });
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
+        // Return success response
+        return Ok("Tool added");
+    }
 
 
-        [HttpGet("tool/{id}")]
-        public async Task<IActionResult> GetToolById(int id)
-        {
-            try
-            {
-                var tool = await _toolService.GetToolByIdAsync(id);
-                return Ok(tool);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
+    // DELETE: admin/tool/{id}
+    // Deletes an AI tool using its ID
+    [HttpDelete("tool/{id}")]
+    public IActionResult DeleteTool(int id)
+    {
+        // Read existing tools from JSON file
+        var tools = _toolRepo.Read();
 
+        // Remove the tool that matches the given ID
+        tools.RemoveAll(t => t.Id == id);
+
+        // Save updated list back to JSON file
+        _toolRepo.Write(tools);
+
+        // Return success response
+        return Ok("Tool deleted");
+    }
+
+
+    // POST: admin/review/{id}/approve
+    // Approves a pending user review
+    [HttpPost("review/{id}/approve")]
+    public IActionResult ApproveReview(int id)
+    {
+        // Read all reviews from JSON file
+        var reviews = _reviewRepo.Read();
+
+        // Find the review using review ID
+        var review = reviews.First(r => r.Id == id);
+
+        // Update review status to Approved
+        review.Status = "Approved";
+
+        // Save updated reviews back to JSON file
+        _reviewRepo.Write(reviews);
+
+        // Recalculate the average rating for the related tool
+        _toolService.RecalculateRating(review.ToolId);
+
+        // Return success response
+        return Ok("Review approved");
     }
 }
