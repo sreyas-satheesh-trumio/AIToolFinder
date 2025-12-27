@@ -1,0 +1,12 @@
+[
+  {
+    "Id": 1,
+    "ToolName": "ChatGPT",
+    "UseCase": "Chat Assistant",
+    "Category": "AI",
+    "PricingType": "Freemium",
+    "AverageRating": 4.5,
+    "CreatedAt": "2025-01-01T10:00:00Z",
+    "Reviews": []
+  }
+]

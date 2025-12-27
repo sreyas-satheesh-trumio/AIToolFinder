@@ -2,29 +2,85 @@ namespace AIToolFinderApp.Services
 {
     public class ToolService : IToolService
     {
-        public Task<AITool> AddToolAsync(CreateToolDto dto)
+        private readonly JsonFileService<AITool> _jsonService;
+
+        public ToolService(IWebHostEnvironment env)
         {
-            throw new NotImplementedException();
+            var path = Path.Combine(env.WebRootPath, "data", "tools.json");
+            _jsonService = new JsonFileService<AITool>(path);
         }
 
-        public Task<AITool> DeleteToolAsync(int id)
+        // CREATE
+        public async Task<AITool> AddToolAsync(CreateToolDto dto)
         {
-            throw new NotImplementedException();
+            var tools = await _jsonService.ReadAsync();
+
+            var newTool = new AITool
+            {
+                Id = tools.Any() ? tools.Max(t => t.Id) + 1 : 1,
+                ToolName = dto.ToolName,
+                UseCase = dto.UseCase,
+                Category = dto.Category,
+                PricingType = dto.Pricing,
+                AverageRating = 0,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            tools.Add(newTool);
+            await _jsonService.WriteAsync(tools);
+
+            return newTool;
         }
 
-        public Task<IEnumerable<AITool>> GetAllToolsAsync()
+        // READ ALL
+        public async Task<IEnumerable<AITool>> GetAllToolsAsync()
         {
-            throw new NotImplementedException();
+            return await _jsonService.ReadAsync();
         }
 
-        public Task<AITool> GetToolByIdAsync(int id)
+        // READ BY ID
+        public async Task<AITool> GetToolByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var tools = await _jsonService.ReadAsync();
+            var tool = tools.FirstOrDefault(t => t.Id == id);
+
+            if (tool == null)
+                throw new KeyNotFoundException($"Tool with ID {id} not found.");
+
+            return tool;
         }
 
-        public Task<AITool> UpdateToolAsync(int id, AITool dto)
+        // UPDATE
+        public async Task<AITool> UpdateToolAsync(int id, AITool dto)
         {
-            throw new NotImplementedException();
+            var tools = await _jsonService.ReadAsync();
+            var tool = tools.FirstOrDefault(t => t.Id == id);
+
+            if (tool == null)
+                throw new KeyNotFoundException($"Tool with ID {id} not found.");
+
+            tool.ToolName = dto.ToolName;
+            tool.UseCase = dto.UseCase;
+            tool.Category = dto.Category;
+            tool.PricingType = dto.PricingType;
+
+            await _jsonService.WriteAsync(tools);
+            return tool;
+        }
+
+        // DELETE
+        public async Task<AITool> DeleteToolAsync(int id)
+        {
+            var tools = await _jsonService.ReadAsync();
+            var tool = tools.FirstOrDefault(t => t.Id == id);
+
+            if (tool == null)
+                throw new KeyNotFoundException($"Tool with ID {id} not found.");
+
+            tools.Remove(tool);
+            await _jsonService.WriteAsync(tools);
+
+            return tool;
         }
     }
 }
