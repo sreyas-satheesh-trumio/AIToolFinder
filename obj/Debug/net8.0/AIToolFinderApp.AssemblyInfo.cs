@@ -13,19 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e403dc2ad4caf93ea1c7d52c9e7499a433fd0202")]
-=======
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3272eed15c65cd6991e48620ec4b523554913404")]
-=======
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dc4b1525be216d261800401589702bba6e8052e")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c2370a8194edd0c19741fa625b81a0cde86dd31")]
->>>>>>> 6c887f3b926b3f9fc8e80d2777be22c2389034db
->>>>>>> e403dc2ad4caf93ea1c7d52c9e7499a433fd0202
->>>>>>> 104f090b3b02d5cd938b71402170f9c772e7a104
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb3eec186ae5ada35fab380830bc99c88e39e127")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIToolFinderApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
