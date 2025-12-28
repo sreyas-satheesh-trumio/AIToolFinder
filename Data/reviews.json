@@ -39,6 +39,20 @@
     "ToolId": 4,
     "Rating": 4,
     "Comment": "Very good but UI can improve",
-    "Status": "Pending"
+    "Status": "Approved"
+  },
+  {
+    "Id": 107,
+    "ToolId": 6,
+    "Rating": 5,
+    "Comment": "Super",
+    "Status": "Approved"
+  },
+  {
+    "Id": 108,
+    "ToolId": 6,
+    "Rating": 4,
+    "Comment": "Super",
+    "Status": "Approved"
   }
 ]

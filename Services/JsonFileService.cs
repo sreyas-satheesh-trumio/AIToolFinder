@@ -1,6 +1,7 @@
 using System.Text.Json;
+using AIToolFinder.Services;
 
-public class JsonFileService<T>
+public class JsonFileService<T> : IJsonFileService<T>
 {
     private readonly string _filePath;
 

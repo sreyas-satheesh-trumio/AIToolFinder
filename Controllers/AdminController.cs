@@ -1,80 +1,73 @@
 
+using AIToolFinder.Services;
 using Microsoft.AspNetCore.Mvc;
+
 [ApiController]
 [Route("admin")]
 public class AdminController : ControllerBase
 {
-    // Repository to read and write AI tools from JSON file
-    private readonly JsonFileService<AITool> _toolRepo = new("Data/tools.json");
+    private readonly IAdminService _adminService;
 
-    // Repository to read and write reviews from JSON file
-    private readonly JsonFileService<Review> _reviewRepo = new("Data/reviews.json");
+    public AdminController(IAdminService adminService)
+    {
+        _adminService = adminService;
+    }
 
-    private readonly ToolService _toolService = new();
-
-
-    // POST: admin/tool
-    // Adds a new AI tool to the system
     [HttpPost("tool")]
-    public IActionResult AddTool(AITool tool)
+    public async Task<ActionResult<AITool>> AddTool(AITool tool)
     {
-        // Read existing tools from JSON file
-        var tools = _toolRepo.Read();
-
-        // Generate a new ID for the tool
-        tool.Id = tools.Count + 1;
-
-        // Add the new tool to the list
-        tools.Add(tool);
-
-        // Save updated tool list back to JSON file
-        _toolRepo.Write(tools);
-
-        // Return success response
-        return Ok("Tool added");
+        try
+        {
+            AITool newTool = await _adminService.CreateAIToolAsync(tool);
+            return StatusCode(201, new
+            {
+                Message = "AI Tool Created Successfully",
+                Tool = tool
+            });
+        }
+        catch(Exception ex)
+        {
+            return BadRequest($"Something went wrong ({ex.Message})");
+        }
     }
 
 
-    // DELETE: admin/tool/{id}
-    // Deletes an AI tool using its ID
     [HttpDelete("tool/{id}")]
-    public IActionResult DeleteTool(int id)
+    public async Task<ActionResult<AITool>> DeleteTool([FromRoute] int id)
     {
-        // Read existing tools from JSON file
-        var tools = _toolRepo.Read();
-
-        // Remove the tool that matches the given ID
-        tools.RemoveAll(t => t.Id == id);
-
-        // Save updated list back to JSON file
-        _toolRepo.Write(tools);
-
-        // Return success response
-        return Ok("Tool deleted");
+        try
+        {
+            AITool? deletedTool = await _adminService.DeleteAIToolAsync(id);
+            if (deletedTool == null) return NotFound();
+            return Ok(new
+            {
+                Message = "AI Tool Deleted Successfully",
+                AITool = deletedTool
+            });
+        }
+        catch(Exception ex)
+        {
+            return BadRequest($"Something went wrong ({ex.Message})");
+        }
     }
 
 
-    // POST: admin/review/{id}/approve
-    // Approves a pending user review
     [HttpPost("review/{id}/approve")]
-    public IActionResult ApproveReview(int id)
+    public async Task<ActionResult<Review>> ApproveReview(int id)
     {
-        // Read all reviews from JSON file
-        var reviews = _reviewRepo.Read();
-
-        // Find the review using review ID
-        var review = reviews.First(r => r.Id == id);
-
-        // Update review status to Approved
-        review.Status = "Approved";
-
-        // Save updated reviews back to JSON file
-        _reviewRepo.Write(reviews);
-
-        // Recalculate the average rating for the related tool
-        _toolService.RecalculateRating(review.ToolId);
-
-        // Return success response
-        return Ok("Review approved");
+        try
+        {
+            Review? updatedReview = await _adminService.ApproveReviewAsync(id);
+            if (updatedReview == null) return NotFound();
+            return Ok(new
+            {
+                Message = "Review Approved Successfully",
+                AITool = updatedReview
+            });
+        }
+        catch(Exception ex)
+        {
+            return BadRequest($"Something went wrong ({ex.Message})");
+        }
     }
 }

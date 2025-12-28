@@ -9,13 +9,15 @@ public class ReviewsController : ControllerBase
     [HttpPost("review")]
     public IActionResult SubmitReview(Review review)
     {
-        review.Id = Guid.NewGuid().GetHashCode();
+        var reviews = _reviewRepo.Read();
+
+        review.Id = reviews.Max(review => review.Id) + 1;
         review.Status = "Pending";
 
-        var reviews = _reviewRepo.Read();
         reviews.Add(review);
         _reviewRepo.Write(reviews);
+        _toolService.RecalculateRating(review.ToolId);
 
         return Ok("Review submitted for approval");
-          }
+    }
 }
