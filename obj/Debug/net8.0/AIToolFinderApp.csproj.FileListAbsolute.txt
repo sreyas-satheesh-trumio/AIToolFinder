@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.AssemblyReference.cache
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfoInputs.cache
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfo.cs
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.CoreCompileInputs.cache
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\304520\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.sourcelink.json
+=======
 C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\appsettings.json
 C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\AIToolFinderApp.exe
@@ -108,6 +117,8 @@ C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.sourcelink.json
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
 C:\AI\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
+C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.AssemblyReference.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfoInputs.cache
@@ -115,11 +126,11 @@ C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.A
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.CoreCompileInputs.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.sourcelink.json
+<<<<<<< HEAD
+=======
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\refint\AIToolFinderApp.dll
 C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
-C:\Users\304495\Documents\GitHub\AIToolFinder\bin\Debug\net8.0\Data\Tools.json
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.csproj.AssemblyReference.cache
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.AssemblyInfoInputs.cache
@@ -225,6 +236,7 @@ C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\refint\AIToolFi
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.pdb
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.genruntimeconfig.cache
 C:\training\trumio\dotnet\Apps\Sat\AIToolFinder\obj\Debug\net8.0\ref\AIToolFinderApp.dll
+<<<<<<< HEAD
 C:\AI\AIToolFinder\bin\Debug\net8.0\appsettings.Development.json
 C:\AI\AIToolFinder\bin\Debug\net8.0\appsettings.json
 C:\AI\AIToolFinder\bin\Debug\net8.0\Data\reviews.json
@@ -320,3 +332,8 @@ C:\AI\AIToolFinder\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFi.9020EEE8.Up2Date
 C:\AI\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.genruntimeconfig.cache
 C:\AI\AIToolFinder\obj\Debug\net8.0\ref\AIToolFinderApp.dll
+=======
+>>>>>>> 6c2770182bf1c72ef9568e17c04b1dfb3279320a
+C:\Users\304503\Documents\GitHub\AIToolFinder\obj\Debug\net8.0\AIToolFinderApp.MvcApplicationPartsAssemblyInfo.cs
+>>>>>>> 3b55425e56afc732f56159922a348d5cbb93cc52
+>>>>>>> 10966a79bddfc863fca424161357c96cd7e012eb
