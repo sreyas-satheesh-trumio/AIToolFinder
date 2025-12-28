@@ -1,13 +1,5 @@
 [
   {
-    "Id": 1,
-    "ToolName": "TextGenius",
-    "UseCase": "Text Summarization",
-    "Category": "NLP",
-    "PricingType": "Free",
-    "AverageRating": 4.5
-  },
-  {
     "Id": 2,
     "ToolName": "VisionCraft",
     "UseCase": "Image Generation",
@@ -37,6 +29,6 @@
     "UseCase": "Task Automation",
     "Category": "Productivity",
     "PricingType": "Subscription",
-    "AverageRating": 4.0
+    "AverageRating": 4
   }
 ]
