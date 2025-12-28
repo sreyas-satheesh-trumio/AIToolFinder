@@ -1,0 +1,55 @@
+# Build Folders
+bin/
+obj/
+
+# Visual Studio Code settings folder
+.vscode/
+
+# Rider IDE settings (if ever used)
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Dotnet temporary files
+*.dotCover
+*.ncrunch*
+*.msscci
+*.vspscc
+
+# Log files
+*.log
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of PackageReference
+**/packages/*
+!**/packages/build/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Visual Studio cache files
+*.VC.db
+*.VC.opendb
+
+# Others
+*.pidb
+*.svclog
+*.pdb
+*.cache
+*.class
+*.dll
+*.exe
+*.ide
+*.pfx
+
+# Mac-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
