@@ -14,7 +14,7 @@ public class AdminController : ControllerBase
     }
 
     [HttpPost("tool")]
-    public async Task<ActionResult<AITool>> AddTool(AITool tool)
+    public async Task<ActionResult<AITool>> AddTool(CreateToolDto tool)
     {
         try
         {
@@ -22,7 +22,7 @@ public class AdminController : ControllerBase
             return StatusCode(201, new
             {
                 Message = "AI Tool Created Successfully",
-                Tool = tool
+                Tool = newTool
             });
         }
         catch(Exception ex)

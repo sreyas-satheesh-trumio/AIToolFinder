@@ -24,13 +24,22 @@ namespace AIToolFinder.Services
             return review;
         }
 
-        public async Task<AITool> CreateAIToolAsync(AITool tool)
+        public async Task<AITool> CreateAIToolAsync(CreateToolDto tool)
         {
             List<AITool> tools = _toolDbService.Read();
-            tool.Id = tools.Max(tool => tool.Id) + 1;
-            tools.Add(tool);
+            AITool newTool = new AITool
+            {
+                Id = tools.Max(tool => tool.Id) + 1,
+                ToolName = tool.ToolName,
+                UseCase = tool.UseCase,
+                Category = tool.Category,
+                PricingType = tool.PricingType,
+                AverageRating = 0.0
+            };
+
+            tools.Add(newTool);
             _toolDbService.Write(tools);
-            return tool;
+            return newTool;
         }
 
         public async Task<AITool?> DeleteAIToolAsync(int id)

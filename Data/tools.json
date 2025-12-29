@@ -38,5 +38,61 @@
     "Category": "AI, NLP",
     "PricingType": "Subscription",
     "AverageRating": 5
+  },
+  {
+    "Id": 7,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 8,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 9,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 10,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 11,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 12,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
+  },
+  {
+    "Id": 13,
+    "ToolName": "OpenAI GPT-4",
+    "UseCase": "General day-to-day AI assistance",
+    "Category": "AI, NLP",
+    "PricingType": "Free",
+    "AverageRating": 0
   }
 ]
