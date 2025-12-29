@@ -1,3 +1,5 @@
+using AIToolFinder.Enums;
+
 namespace AIToolFinder.Services
 {
     public class AdminService : IAdminService
@@ -33,7 +35,7 @@ namespace AIToolFinder.Services
                 ToolName = tool.ToolName,
                 UseCase = tool.UseCase,
                 Category = tool.Category,
-                PricingType = tool.PricingType,
+                PricingType = tool.PricingType ?? PricingModel.Free,
                 AverageRating = 0.0
             };
 

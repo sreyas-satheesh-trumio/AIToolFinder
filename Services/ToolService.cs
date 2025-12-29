@@ -17,8 +17,8 @@ public class ToolService
         if (!string.IsNullOrEmpty(category))
             tools = tools.Where(t => t.Category == category).ToList();
 
-        if (!string.IsNullOrEmpty(price))
-            tools = tools.Where(t => t.PricingType == price).ToList();
+        // if (!string.IsNullOrEmpty(price))
+        //     tools = tools.Where(t => t.PricingType == price).ToList();
 
         if (minRating.HasValue)
             tools = tools.Where(t => t.AverageRating >= minRating).ToList();

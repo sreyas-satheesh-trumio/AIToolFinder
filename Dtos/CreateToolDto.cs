@@ -12,5 +12,6 @@ public class CreateToolDto
     [Required(ErrorMessage = "Category is required")]
     public string Category { get; set; } = default!;
 
-    public string PricingType { get; set; } = "Free";
+    [Required(ErrorMessage = "Pricing Type is required")]
+    public PricingModel? PricingType { get; set; }
 }

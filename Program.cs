@@ -12,7 +12,8 @@ builder.Services
     .AddSingleton<IJsonFileService<Review>, JsonFileService<Review>>((provider) => 
         new JsonFileService<Review>("Data/reviews.json"));
 
-builder.Services.AddControllers()
+builder.Services
+    .AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());

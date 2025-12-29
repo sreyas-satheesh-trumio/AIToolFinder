@@ -6,6 +6,6 @@ public class AITool
     public string ToolName { get; set; } = default!;
     public string UseCase { get; set; } = default!;
     public string Category { get; set; } = default!;
-    public string PricingType { get; set; } = "Free";
+    public PricingModel PricingType { get; set; } = PricingModel.Free;
     public double AverageRating { get; set; }
 }
