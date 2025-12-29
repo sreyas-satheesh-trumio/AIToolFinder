@@ -46,9 +46,15 @@ namespace AIToolFinder.Services
             return toolToRemove;
         }
 
-        public async Task<AITool?> UpdateAIToolAsync(int id, AITool tool)
+        public async Task<Review?> RejectReviewAsync(int id)
         {
-            throw new NotImplementedException();
+            List<Review> reviews = _reviewDbService.Read();
+            Review? review = reviews.Find(review => review.Id == id);
+            if (review == null) return null;
+            review.Status = "Rejected";
+            _reviewDbService.Write(reviews);
+            _toolService.RecalculateRating(review.ToolId);
+            return review;
         }
     }
 }
