@@ -1,3 +1,5 @@
+using AIToolFinder.Dtos;
+
 namespace AIToolFinder.Services
 {
     public interface IAdminService

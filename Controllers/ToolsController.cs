@@ -1,4 +1,6 @@
-    using Microsoft.AspNetCore.Mvc;
+using AIToolFinder.Dtos;
+using AIToolFinder.Enums;
+using Microsoft.AspNetCore.Mvc;
     [ApiController]
     [Route("tools")]
     public class ToolsController : ControllerBase
@@ -6,12 +8,9 @@
         private readonly ToolService _service = new();
     
         [HttpGet]
-        public IActionResult GetTools(
-            [FromQuery] string? category,
-            [FromQuery] string? price,
-            [FromQuery] double? rating)
+        public IActionResult GetTools([FromQuery] FilterToolsDto filter)
         {
-            var result = _service.GetTools(category, price, rating);
+            var result = _service.GetTools(filter);
             return Ok(result);
         }
     }

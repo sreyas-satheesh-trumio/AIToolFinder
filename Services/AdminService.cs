@@ -1,3 +1,4 @@
+using AIToolFinder.Dtos;
 using AIToolFinder.Enums;
 
 namespace AIToolFinder.Services
