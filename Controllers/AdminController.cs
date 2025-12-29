@@ -52,7 +52,7 @@ public class AdminController : ControllerBase
     }
 
 
-    [HttpPost("review/{id}/approve")]
+    [HttpPut("review/{id}/approve")]
     public async Task<ActionResult<Review>> ApproveReview(int id)
     {
         try
@@ -71,7 +71,7 @@ public class AdminController : ControllerBase
         }
     }
 
-    [HttpPost("review/{id}/reject")]
+    [HttpPut("review/{id}/reject")]
     public async Task<ActionResult<Review>> RejectReview(int id)
     {
         try
