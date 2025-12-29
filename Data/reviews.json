@@ -58,8 +58,8 @@
   {
     "Id": 109,
     "ToolId": 6,
-    "Rating": 4,
+    "Rating": 5,
     "Comment": "Super",
-    "Status": "Approved"
+    "Status": "Rejected"
   }
 ]

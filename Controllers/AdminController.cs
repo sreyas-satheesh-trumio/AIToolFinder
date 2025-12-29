@@ -70,4 +70,23 @@ public class AdminController : ControllerBase
             return BadRequest($"Something went wrong ({ex.Message})");
         }
     }
+
+    [HttpPost("review/{id}/reject")]
+    public async Task<ActionResult<Review>> RejectReview(int id)
+    {
+        try
+        {
+            Review? updatedReview = await _adminService.RejectReviewAsync(id);
+            if (updatedReview == null) return NotFound();
+            return Ok(new
+            {
+                Message = "Review Rejected Successfully",
+                AITool = updatedReview
+            });
+        }
+        catch(Exception ex)
+        {
+            return BadRequest($"Something went wrong ({ex.Message})");
+        }
+    }
 }
