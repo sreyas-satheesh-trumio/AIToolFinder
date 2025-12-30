@@ -22,7 +22,7 @@ public class ToolService
         if (filter.PricingType != null)
             tools = tools.Where(t => t.PricingType == filter.PricingType).ToList();
 
-        tools = tools.Where(t => t.AverageRating >= filter.Rating).ToList();
+        tools = tools.Where(t => t.AverageRating >= filter.Rating || t.AverageRating == 0).ToList();
 
         return tools;
     }

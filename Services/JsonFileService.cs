@@ -15,7 +15,7 @@ public class JsonFileService<T> : IJsonFileService<T>
     public List<T> Read()
     {
         var json = File.ReadAllText(_filePath);
-        return JsonSerializer.Deserialize<List<T>>(json) ?? new List<T>();
+        return JsonSerializer.Deserialize<List<T>>(string.IsNullOrEmpty(json) ? "[]" : json) ?? new List<T>();
     }
 
     public void Write(List<T> data)

@@ -9,6 +9,6 @@ namespace AIToolFinder.Dtos
         public PricingModel? PricingType { get; set; }
 
         [Range(1, 5, ErrorMessage = "Rating should be between 1 and 5")]
-        public double Rating { get; set; } = 0;
+        public double Rating { get; set; } = 1;
     }
 }
