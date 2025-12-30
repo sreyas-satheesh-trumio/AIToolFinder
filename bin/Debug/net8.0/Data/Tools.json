@@ -5,7 +5,7 @@
     "UseCase": "Text Summarization",
     "Category": "NLP",
     "PricingType": "Free",
-    "AverageRating": 4.5
+    "AverageRating": 4.666666666666667
   },
   {
     "Id": 2,
@@ -30,13 +30,5 @@
     "Category": "NLP",
     "PricingType": "Free",
     "AverageRating": 4.8
-  },
-  {
-    "Id": 5,
-    "ToolName": "ProductiveAI",
-    "UseCase": "Task Automation",
-    "Category": "Productivity",
-    "PricingType": "Subscription",
-    "AverageRating": 4.0
   }
 ]

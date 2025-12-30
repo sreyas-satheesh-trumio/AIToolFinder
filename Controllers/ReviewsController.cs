@@ -1,21 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
+[Route("reviews")]
 public class ReviewsController : ControllerBase
 {
-    private readonly JsonFileService<Review> _reviewRepo = new("Data/reviews.json");
-    private readonly ToolService _toolService = new();
+    private readonly IReviewService _reviewService;
 
-    [HttpPost("review")]
-    public IActionResult SubmitReview(Review review)
+    public ReviewsController(IReviewService reviewService)
     {
-        review.Id = Guid.NewGuid().GetHashCode();
-        review.Status = "Pending";
+        _reviewService = reviewService;
+    }
 
-        var reviews = _reviewRepo.Read();
-        reviews.Add(review);
-        _reviewRepo.Write(reviews);
+    // POST /reviews
+    [HttpPost]
+    public IActionResult Add(CreateReviewRequest request)
+    {
+        _reviewService.SubmitReview(request);
+        return Ok("Review added");
+    }
 
-        return Ok("Review submitted for approval");
+    // GET /reviews
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok(_reviewService.GetAllReviews());
     }
 }

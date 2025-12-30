@@ -40,5 +40,40 @@
     "Rating": 4,
     "Comment": "Very good but UI can improve",
     "Status": "Pending"
+  },
+  {
+    "Id": 1958877937,
+    "ToolId": 2,
+    "Rating": 5,
+    "Comment": "Very accurate and fast responses",
+    "Status": "Pending"
+  },
+  {
+    "Id": 895257651,
+    "ToolId": 5,
+    "Rating": 2,
+    "Comment": "Its very difficult to use",
+    "Status": "Approved"
+  },
+  {
+    "Id": 747100857,
+    "ToolId": 1,
+    "Rating": 5,
+    "Comment": "Excellent summarization quality",
+    "Status": "Approved"
+  },
+  {
+    "Id": -53398043,
+    "ToolId": 1,
+    "Rating": 5,
+    "Comment": "Very Bad Experience",
+    "Status": "Rejected"
+  },
+  {
+    "Id": -183619561,
+    "ToolId": 1,
+    "Rating": 4,
+    "Comment": "Excellent summarization quality",
+    "Status": "Pending"
   }
 ]
