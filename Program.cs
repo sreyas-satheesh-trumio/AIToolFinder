@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 var builder = WebApplication.CreateBuilder(args);
 
+=======
+using Microsoft.EntityFrameworkCore;
+var builder = WebApplication.CreateBuilder(args);
+>>>>>>> Stashed changes
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
