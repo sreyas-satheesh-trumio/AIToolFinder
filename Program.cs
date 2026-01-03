@@ -11,7 +11,7 @@ builder.Services.AddDbContext<ReviewDbContext>(options =>
 );
 
 builder.Services.AddScoped<IAdminService, AdminService>();
-// builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 // builder.Services.AddScoped<ToolService>();
 
 

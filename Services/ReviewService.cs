@@ -1,4 +1,6 @@
 
+using AIToolFinder.Services;
+
 public class ReviewService : IReviewService
 {
     private readonly ReviewDbContext _context;
@@ -15,20 +17,16 @@ public class ReviewService : IReviewService
             ToolId = request.ToolId,
             Rating = request.Rating,
             Comment = request.Comment,
-            Status = "Pending"
+            Status = ApprovalStatus.Pending
         };
 
         _context.Reviews.Add(review);
         _context.SaveChanges();
-
-       
     }
 
     public List<Review> GetAllReviews()
     {
         return _context.Reviews.ToList();
     }
-
-   
     
 }
