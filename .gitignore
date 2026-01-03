@@ -53,3 +53,6 @@ ScaffoldingReadMe.txt
 # Windows-specific files
 Thumbs.db
 ehthumbs.db
+
+# user files
+Migrations/

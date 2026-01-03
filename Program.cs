@@ -1,10 +1,10 @@
-using System.Text.Json.Serialization;
 using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<ReviewDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
@@ -12,27 +12,34 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
-builder.Services.AddScoped<ToolService>();
-builder.Services
-    .AddSingleton<IJsonFileService<AITool>, JsonFileService<AITool>>((provider) => 
-        new JsonFileService<AITool>("Data/tools.json"));
-builder.Services
-    .AddSingleton<IJsonFileService<Review>, JsonFileService<Review>>((provider) => 
-        new JsonFileService<Review>("Data/reviews.json"));
+builder.Services.AddScoped<IToolService, ToolService>();
+// builder.Services.AddScoped<ToolService>();
 
-builder.Services
-    .AddControllers()
+
+// 🔹 Controllers + Enum support
+builder.Services.AddControllers()
     .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+    );
 
+// 🔹 Swagger
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// 🔹 Middleware
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
+// 🔹 Map controllers
 app.MapControllers();
+
 
 app.Run();

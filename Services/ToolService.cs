@@ -1,44 +1,63 @@
+using Microsoft.EntityFrameworkCore;
 
-using AIToolFinder.Dtos;
-
-public class ToolService
+public class ToolService : IToolService
 {
-    private readonly JsonFileService<AITool> _toolRepo;
-    private readonly JsonFileService<Review> _reviewRepo;
+    private readonly AIToolDbContext _dbContext;
 
-    public ToolService()
+    public ToolService(AIToolDbContext dbContext)
     {
-        _toolRepo = new JsonFileService<AITool>("Data/tools.json");
-        _reviewRepo = new JsonFileService<Review>("Data/reviews.json");
+        _dbContext = dbContext;
     }
 
-    public List<AITool> GetTools(FilterToolsDto filter)
+    public List<AITool> GetTools(FilterToolsDto? filter)
     {
-        var tools = _toolRepo.Read();
+        var query = _dbContext.AITools.AsQueryable();
 
-        if (!string.IsNullOrEmpty(filter.Category))
-            tools = tools.Where(t => t.Category == filter.Category).ToList();
+        if (filter != null)
+        {
+            if (!string.IsNullOrWhiteSpace(filter.Category))
+                query = query.Where(t => t.Category == filter.Category);
 
-        if (filter.PricingType != null)
-            tools = tools.Where(t => t.PricingType == filter.PricingType).ToList();
+            if (filter.PricingType != null)
+                query = query.Where(t => t.PricingType == filter.PricingType);
 
-        tools = tools.Where(t => t.AverageRating >= filter.Rating || t.AverageRating == 0).ToList();
+            if (filter.Rating > 0)
+                query = query.Where(t => t.AverageRating >= filter.Rating);
 
-        return tools;
+            if (!string.IsNullOrEmpty(filter.UseCase))
+                query = query.Where(t => t.UseCase != null &&
+                                         t.UseCase.Contains(filter.UseCase));
+        }
+
+        return query.ToList();
     }
 
-    public void RecalculateRating(int toolId)
+    public bool RecalculateRating(int toolId)
     {
-        var tools = _toolRepo.Read();
-        var reviews = _reviewRepo.Read()
-            .Where(r => r.ToolId == toolId && r.Status == "Approved")
-            .ToList();
+        try
+        {
+            var tool = _dbContext.AITools
+                .Include(t => t.Reviews)
+                .FirstOrDefault(t => t.Id == toolId);
 
-        var tool = tools.First(t => t.Id == toolId);
-        tool.AverageRating = reviews.Any()
-            ? reviews.Average(r => r.Rating)
-            : 0;
+            if (tool == null)
+                return false;
 
-        _toolRepo.Write(tools);
+            var approvedReviews = tool.Reviews?
+                .Where(r => r.Status == "Approved")
+                .ToList();
+
+            tool.AverageRating = approvedReviews != null && approvedReviews.Any()
+                ? approvedReviews.Average(r => r.Rating)
+                : 0;
+
+            _dbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return false;
+        }
     }
 }

@@ -2,13 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options)
-    {
-    }
+    public DbSet<AITool> AiTools => Set<AITool>();
+    public DbSet<Review> Reviews => Set<Review>();
 
-    public DbSet<AITool> AITools { get; set; } = null!;
-    public DbSet<Review> Reviews { get; set; } = null!;
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options) {}
 
     [Obsolete]
     protected override void OnModelCreating(ModelBuilder modelBuilder)

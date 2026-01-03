@@ -1,36 +1,23 @@
-using AIToolFinder.Dtos;
 using AIToolFinder.Enums;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace AIToolFinder.Services
 {
     public class AdminService : IAdminService
     {
-        private readonly ToolService _toolService;
-        private readonly AppDbContext _context;
-
-        public AdminService(ToolService toolService,AppDbContext context)
+        private readonly AppDbContext _db;
+        public AdminService(AppDbContext dbContext)
         {
-            _toolService = toolService;
-            _context = context;
+            _db = dbContext;
         }
 
         public async Task<Review?> ApproveReviewAsync(int id)
         {
-            Review? review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
-
-            if (review == null)
-                return null;
-
-            // Optional: prevent re-approval
-            if (review.Status == "Approved")
-                return review;
-
-            review.Status = "Approved";
-
-            await _context.SaveChangesAsync();
-
+            Review? review = await _db.Reviews.FindAsync(id);
+            if (review == null) return null;
+            review.Status = ApprovalStatus.Approved;
+            await _db.SaveChangesAsync();
             return review;
         }
 
@@ -45,9 +32,8 @@ namespace AIToolFinder.Services
                 AverageRating = 0
             };
 
-            _context.AITools.Add(newTool);
-            await _context.SaveChangesAsync();
-
+            _db.AiTools.Add(newTool);
+            await _db.SaveChangesAsync();
             return newTool;
         }
 
@@ -56,29 +42,24 @@ namespace AIToolFinder.Services
 
         public async Task<AITool?> DeleteAIToolAsync(int id)
         {
-            AITool? tool = await _context.AITools.FirstOrDefaultAsync(t => t.Id == id);
+            AITool? toolToRemove = await _db.AiTools.FindAsync(id);
 
-            if (tool == null)
+            if (toolToRemove == null)
                 return null;
 
-            _context.AITools.Remove(tool);
-            await _context.SaveChangesAsync();
-
-            return tool;
+            _db.AiTools.Remove(toolToRemove);
+            await _db.SaveChangesAsync();
+            
+            return toolToRemove;
         }
 
 
         public async Task<Review?> RejectReviewAsync(int id)
         {
-            Review? review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
-
-            if (review == null)
-                return null;
-
-            review.Status = "Rejected";
-
-            await _context.SaveChangesAsync();
-
+            Review? review = await _db.Reviews.FindAsync(id);
+            if (review == null) return null;
+            review.Status = ApprovalStatus.Rejected;
+            await _db.SaveChangesAsync();
             return review;
         }
 
