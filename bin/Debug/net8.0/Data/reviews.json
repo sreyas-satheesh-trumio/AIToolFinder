@@ -68,5 +68,12 @@
     "Rating": 5,
     "Comment": "Very Bad Experience",
     "Status": "Rejected"
+  },
+  {
+    "Id": -183619561,
+    "ToolId": 1,
+    "Rating": 4,
+    "Comment": "Excellent summarization quality",
+    "Status": "Pending"
   }
 ]
