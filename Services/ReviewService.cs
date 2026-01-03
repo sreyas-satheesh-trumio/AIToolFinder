@@ -1,30 +1,50 @@
+
 public class ReviewService : IReviewService
 {
-    private readonly JsonFileService<Review> _reviewRepo;
+    private readonly ReviewDbContext _context;
 
-    public ReviewService()
+    public ReviewService(ReviewDbContext context)
     {
-        _reviewRepo = new JsonFileService<Review>("Data/reviews.json");
+        _context = context;
     }
 
     public void SubmitReview(CreateReviewRequest request)
     {
         var review = new Review
         {
-            Id = Guid.NewGuid().GetHashCode(),
             ToolId = request.ToolId,
             Rating = request.Rating,
             Comment = request.Comment,
             Status = "Pending"
         };
 
-        var reviews = _reviewRepo.Read();
-        reviews.Add(review);
-        _reviewRepo.Write(reviews);
+        _context.Reviews.Add(review);
+        _context.SaveChanges();
+
+        UpdateToolAverageRating(request.ToolId);
     }
 
     public List<Review> GetAllReviews()
     {
-        return _reviewRepo.Read();
+        return _context.Reviews.ToList();
+    }
+
+    private void UpdateToolAverageRating(int toolId)
+    {
+        var approvedReviews = _context.Reviews
+            .Where(r => r.ToolId == toolId && r.Status == "Approved")
+            .ToList();
+
+        if (!approvedReviews.Any())
+            return;
+
+        var avgRating = approvedReviews.Average(r => r.Rating);
+
+        var tool = _context.AITools.FirstOrDefault(t => t.Id == toolId);
+        if (tool != null)
+        {
+            tool.AverageRating = avgRating;
+            _context.SaveChanges();
+        }
     }
 }

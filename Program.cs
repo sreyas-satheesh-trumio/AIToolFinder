@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<ReviewDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
@@ -20,6 +20,7 @@ builder.Services
     .AddSingleton<IJsonFileService<Review>, JsonFileService<Review>>((provider) => 
         new JsonFileService<Review>("Data/reviews.json"));
 
+
 builder.Services
     .AddControllers()
     .AddJsonOptions(options =>
@@ -34,5 +35,6 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 
 app.Run();
