@@ -30,8 +30,6 @@
     "Category": "Productivity",
     "PricingType": "Subscription",
     "AverageRating": 4
-<<<<<<< Updated upstream
-=======
   },
   {
     "Id": 7,
@@ -40,6 +38,5 @@
     "Category": "NLP",
     "PricingType": "Free",
     "AverageRating": 4
->>>>>>> Stashed changes
   }
 ]

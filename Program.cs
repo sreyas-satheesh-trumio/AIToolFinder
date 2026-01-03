@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+using Microsoft.EntityFrameworkCore;
+>>>>>>> rijo
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+
 
 =======
 using Microsoft.EntityFrameworkCore;
