@@ -1,19 +1,9 @@
-using System.ComponentModel.DataAnnotations;
 using AIToolFinder.Enums;
 
-namespace AIToolFinder.Dtos {
-    public class CreateToolDto
-    {
-        [Required(ErrorMessage = "Tool name is required")]
-        public string ToolName { get; set; } = default!;
-
-        [Required(ErrorMessage = "Use case is required")]
-        public string UseCase { get; set; } = default!;
-
-        [Required(ErrorMessage = "Category is required")]
-        public string Category { get; set; } = default!;
-
-        [Required(ErrorMessage = "Pricing Type is required")]
-        public PricingModel? PricingType { get; set; }
-    }
+public class CreateToolDto
+{
+    public string ToolName { get; set; } = string.Empty;
+    public string UseCase { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
+    public PricingModel? PricingType { get; set; }
 }
