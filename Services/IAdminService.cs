@@ -8,5 +8,6 @@ namespace AIToolFinder.Services
         Task<AITool?> DeleteAIToolAsync(int id);
         Task<Review?> ApproveReviewAsync(int id);
         Task<Review?> RejectReviewAsync(int id);
+
     }
 }

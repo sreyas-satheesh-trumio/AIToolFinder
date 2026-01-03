@@ -1,72 +1,88 @@
 using AIToolFinder.Dtos;
 using AIToolFinder.Enums;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AIToolFinder.Services
 {
     public class AdminService : IAdminService
     {
         private readonly ToolService _toolService;
-        private readonly IJsonFileService<AITool> _toolDbService;
-        private readonly IJsonFileService<Review> _reviewDbService;
+        private readonly AppDbContext _context;
 
-        public AdminService(ToolService toolService,IJsonFileService<AITool> toolJsonFileService, IJsonFileService<Review> reviewJsonFileService)
+        public AdminService(ToolService toolService,AppDbContext context)
         {
             _toolService = toolService;
-            _toolDbService = toolJsonFileService;
-            _reviewDbService = reviewJsonFileService;
+            _context = context;
         }
 
         public async Task<Review?> ApproveReviewAsync(int id)
         {
-            List<Review> reviews = _reviewDbService.Read();
-            Review? review = reviews.Find(review => review.Id == id);
-            if (review == null) return null;
+            Review? review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
+
+            if (review == null)
+                return null;
+
+            // Optional: prevent re-approval
+            if (review.Status == "Approved")
+                return review;
+
             review.Status = "Approved";
-            _reviewDbService.Write(reviews);
-            _toolService.RecalculateRating(review.ToolId);
+
+            await _context.SaveChangesAsync();
+
             return review;
         }
 
         public async Task<AITool> CreateAIToolAsync(CreateToolDto tool)
         {
-            List<AITool> tools = _toolDbService.Read();
             AITool newTool = new AITool
             {
-                Id = tools.Max(tool => tool.Id) + 1,
                 ToolName = tool.ToolName,
                 UseCase = tool.UseCase,
                 Category = tool.Category,
                 PricingType = tool.PricingType ?? PricingModel.Free,
-                AverageRating = 0.0
+                AverageRating = 0
             };
 
-            tools.Add(newTool);
-            _toolDbService.Write(tools);
+            _context.AITools.Add(newTool);
+            await _context.SaveChangesAsync();
+
             return newTool;
         }
 
+
+
+
         public async Task<AITool?> DeleteAIToolAsync(int id)
         {
-            List<AITool> tools = _toolDbService.Read();
-            AITool? toolToRemove = tools.FirstOrDefault(tool => tool.Id == id);
+            AITool? tool = await _context.AITools.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (toolToRemove != null)
-                tools.Remove(toolToRemove);
+            if (tool == null)
+                return null;
 
-            _toolDbService.Write(tools);
-            
-            return toolToRemove;
+            _context.AITools.Remove(tool);
+            await _context.SaveChangesAsync();
+
+            return tool;
         }
+
 
         public async Task<Review?> RejectReviewAsync(int id)
         {
-            List<Review> reviews = _reviewDbService.Read();
-            Review? review = reviews.Find(review => review.Id == id);
-            if (review == null) return null;
+            Review? review = await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
+
+            if (review == null)
+                return null;
+
             review.Status = "Rejected";
-            _reviewDbService.Write(reviews);
-            _toolService.RecalculateRating(review.ToolId);
+
+            await _context.SaveChangesAsync();
+
             return review;
         }
+
+
+
     }
 }

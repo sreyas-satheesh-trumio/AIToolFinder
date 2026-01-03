@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 public class AdminController : ControllerBase
 {
     private readonly IAdminService _adminService;
-
     public AdminController(IAdminService adminService)
     {
         _adminService = adminService;
@@ -17,41 +16,31 @@ public class AdminController : ControllerBase
     [HttpPost("tool")]
     public async Task<ActionResult<AITool>> AddTool(CreateToolDto tool)
     {
-        try
+        AITool newTool = await _adminService.CreateAIToolAsync(tool);
+
+        return StatusCode(201, new
         {
-            AITool newTool = await _adminService.CreateAIToolAsync(tool);
-            return StatusCode(201, new
-            {
-                Message = "AI Tool Created Successfully",
-                Tool = newTool
-            });
-        }
-        catch(Exception ex)
-        {
-            return BadRequest($"Something went wrong ({ex.Message})");
-        }
+            Message = "AI Tool Created Successfully",
+            Tool = newTool
+        });
     }
+
 
 
     [HttpDelete("tool/{id}")]
-    public async Task<ActionResult<AITool>> DeleteTool([FromRoute] int id)
+    public async Task<ActionResult<AITool>> DeleteTool(int id)
     {
-        try
-        {
-            AITool? deletedTool = await _adminService.DeleteAIToolAsync(id);
-            if (deletedTool == null) return NotFound();
-            return Ok(new
-            {
-                Message = "AI Tool Deleted Successfully",
-                AITool = deletedTool
-            });
-        }
-        catch(Exception ex)
-        {
-            return BadRequest($"Something went wrong ({ex.Message})");
-        }
-    }
+        AITool? deletedTool = await _adminService.DeleteAIToolAsync(id);
 
+        if (deletedTool == null)
+            return NotFound();
+
+        return Ok(new
+        {
+            Message = "AI Tool Deleted Successfully",
+            Tool = deletedTool
+        });
+    }
 
     [HttpPut("review/{id}/approve")]
     public async Task<ActionResult<Review>> ApproveReview(int id)
