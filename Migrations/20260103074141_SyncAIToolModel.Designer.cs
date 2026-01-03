@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AIToolFinderApp.Migrations
 {
     [DbContext(typeof(AIToolDbContext))]
-    partial class AIToolDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260103074141_SyncAIToolModel")]
+    partial class SyncAIToolModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,23 +35,12 @@ namespace AIToolFinderApp.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Category")
-<<<<<<< HEAD
-                        .IsRequired()
-=======
->>>>>>> 0c30f6ee7296d1dbdc60a398043d4cd93a150334
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PricingType")
                         .HasColumnType("int");
 
                     b.Property<string>("ToolName")
-<<<<<<< HEAD
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UseCase")
-=======
->>>>>>> 0c30f6ee7296d1dbdc60a398043d4cd93a150334
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -64,12 +56,6 @@ namespace AIToolFinderApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-<<<<<<< HEAD
-                    b.Property<int>("AIToolId")
-                        .HasColumnType("int");
-
-=======
->>>>>>> 0c30f6ee7296d1dbdc60a398043d4cd93a150334
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
@@ -85,26 +71,16 @@ namespace AIToolFinderApp.Migrations
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD
-                    b.HasIndex("AIToolId");
-
-                    b.ToTable("Review");
-=======
                     b.HasIndex("ToolId");
 
                     b.ToTable("Reviews");
->>>>>>> 0c30f6ee7296d1dbdc60a398043d4cd93a150334
                 });
 
             modelBuilder.Entity("Review", b =>
                 {
                     b.HasOne("AITool", "AITool")
                         .WithMany("Reviews")
-<<<<<<< HEAD
-                        .HasForeignKey("AIToolId")
-=======
                         .HasForeignKey("ToolId")
->>>>>>> 0c30f6ee7296d1dbdc60a398043d4cd93a150334
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

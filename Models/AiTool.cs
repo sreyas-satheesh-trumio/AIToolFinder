@@ -7,6 +7,5 @@ public class AITool
     public string Category { get; set; } = null!;
     public PricingModel PricingType { get; set; }
     public double AverageRating { get; set; }
-    public string? UseCase { get; set; }
-    public List<Review> Reviews { get; set; } = new();
+    public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

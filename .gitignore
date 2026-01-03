@@ -54,5 +54,5 @@ ScaffoldingReadMe.txt
 Thumbs.db
 ehthumbs.db
 
-# Project files
-Data/
+# user files
+Migrations/
