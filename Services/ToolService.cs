@@ -1,6 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
+<<<<<<< HEAD
 public class ToolService : IToolService
+=======
+using AIToolFinder.Dtos;
+using AIToolFinder.Services;
+
+public class ToolService
+>>>>>>> 659620d64d4df64bac45d7c6aa23e96971a28c87
 {
     private readonly AIToolDbContext _dbContext;
 
@@ -34,11 +41,18 @@ public class ToolService : IToolService
 
     public bool RecalculateRating(int toolId)
     {
+<<<<<<< HEAD
         try
         {
             var tool = _dbContext.AITools
                 .Include(t => t.Reviews)
                 .FirstOrDefault(t => t.Id == toolId);
+=======
+        var tools = _toolRepo.Read();
+        var reviews = _reviewRepo.Read()
+            .Where(r => r.ToolId == toolId && r.Status == ApprovalStatus.Approved)
+            .ToList();
+>>>>>>> 659620d64d4df64bac45d7c6aa23e96971a28c87
 
             if (tool == null)
                 return false;
