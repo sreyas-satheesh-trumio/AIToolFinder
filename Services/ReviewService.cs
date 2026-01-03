@@ -1,30 +1,34 @@
+
 public class ReviewService : IReviewService
 {
-    private readonly JsonFileService<Review> _reviewRepo;
+    private readonly ReviewDbContext _context;
 
-    public ReviewService()
+    public ReviewService(ReviewDbContext context)
     {
-        _reviewRepo = new JsonFileService<Review>("Data/reviews.json");
+        _context = context;
     }
 
     public void SubmitReview(CreateReviewRequest request)
     {
         var review = new Review
         {
-            Id = Guid.NewGuid().GetHashCode(),
             ToolId = request.ToolId,
             Rating = request.Rating,
             Comment = request.Comment,
             Status = "Pending"
         };
 
-        var reviews = _reviewRepo.Read();
-        reviews.Add(review);
-        _reviewRepo.Write(reviews);
+        _context.Reviews.Add(review);
+        _context.SaveChanges();
+
+       
     }
 
     public List<Review> GetAllReviews()
     {
-        return _reviewRepo.Read();
+        return _context.Reviews.ToList();
     }
+
+   
+    
 }
