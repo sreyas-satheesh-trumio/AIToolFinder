@@ -75,5 +75,19 @@
     "Rating": 4,
     "Comment": "Excellent summarization quality",
     "Status": "Pending"
+  },
+  {
+    "Id": 215361833,
+    "ToolId": 2,
+    "Rating": 5,
+    "Comment": "Super",
+    "Status": "Approved"
+  },
+  {
+    "Id": 1459592745,
+    "ToolId": 2,
+    "Rating": 2,
+    "Comment": "Super",
+    "Status": "Approved"
   }
 ]

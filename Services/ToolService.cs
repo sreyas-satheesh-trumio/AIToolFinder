@@ -1,4 +1,6 @@
 
+using AIToolFinder.Dtos;
+
 public class ToolService
 {
     private readonly JsonFileService<AITool> _toolRepo;
@@ -10,18 +12,17 @@ public class ToolService
         _reviewRepo = new JsonFileService<Review>("Data/reviews.json");
     }
 
-    public List<AITool> GetTools(string? category, string? price, double? minRating)
+    public List<AITool> GetTools(FilterToolsDto filter)
     {
         var tools = _toolRepo.Read();
 
-        if (!string.IsNullOrEmpty(category))
-            tools = tools.Where(t => t.Category == category).ToList();
+        if (!string.IsNullOrEmpty(filter.Category))
+            tools = tools.Where(t => t.Category == filter.Category).ToList();
 
-        if (!string.IsNullOrEmpty(price))
-            tools = tools.Where(t => t.PricingType == price).ToList();
+        if (filter.PricingType != null)
+            tools = tools.Where(t => t.PricingType == filter.PricingType).ToList();
 
-        if (minRating.HasValue)
-            tools = tools.Where(t => t.AverageRating >= minRating).ToList();
+        tools = tools.Where(t => t.AverageRating >= filter.Rating || t.AverageRating == 0).ToList();
 
         return tools;
     }
