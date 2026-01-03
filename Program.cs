@@ -11,14 +11,8 @@ builder.Services.AddDbContext<ReviewDbContext>(options =>
 );
 
 builder.Services.AddScoped<IAdminService, AdminService>();
-builder.Services.AddScoped<IReviewService, ReviewService>();
-builder.Services.AddScoped<ToolService>();
-builder.Services
-    .AddSingleton<IJsonFileService<AITool>, JsonFileService<AITool>>((provider) => 
-        new JsonFileService<AITool>("Data/tools.json"));
-builder.Services
-    .AddSingleton<IJsonFileService<Review>, JsonFileService<Review>>((provider) => 
-        new JsonFileService<Review>("Data/reviews.json"));
+// builder.Services.AddScoped<IReviewService, ReviewService>();
+// builder.Services.AddScoped<ToolService>();
 
 
 builder.Services

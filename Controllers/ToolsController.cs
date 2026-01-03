@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
     [Route("tools")]
     public class ToolsController : ControllerBase
     {
-        private readonly ToolService _service = new();
+        // private readonly ToolService _service = new();
     
-        [HttpGet]
-        public IActionResult GetTools([FromQuery] FilterToolsDto filter)
-        {
-            var result = _service.GetTools(filter);
-            return Ok(result);
-        }
+        // [HttpGet]
+        // public IActionResult GetTools([FromQuery] FilterToolsDto filter)
+        // {
+        //     var result = _service.GetTools(filter);
+        //     return Ok(result);
+        // }
     }

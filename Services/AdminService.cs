@@ -1,71 +1,62 @@
 using AIToolFinder.Dtos;
 using AIToolFinder.Enums;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace AIToolFinder.Services
 {
     public class AdminService : IAdminService
     {
-        private readonly ToolService _toolService;
-        private readonly IJsonFileService<AITool> _toolDbService;
-        private readonly IJsonFileService<Review> _reviewDbService;
-
-        public AdminService(ToolService toolService,IJsonFileService<AITool> toolJsonFileService, IJsonFileService<Review> reviewJsonFileService)
+        private readonly AppDbContext _db;
+        public AdminService(AppDbContext dbContext)
         {
-            _toolService = toolService;
-            _toolDbService = toolJsonFileService;
-            _reviewDbService = reviewJsonFileService;
+            _db = dbContext;
         }
 
         public async Task<Review?> ApproveReviewAsync(int id)
         {
-            List<Review> reviews = _reviewDbService.Read();
-            Review? review = reviews.Find(review => review.Id == id);
+            Review? review = await _db.Reviews.FindAsync(id);
             if (review == null) return null;
-            review.Status = "Approved";
-            _reviewDbService.Write(reviews);
-            _toolService.RecalculateRating(review.ToolId);
+            review.Status = ApprovalStatus.Approved;
+            await _db.SaveChangesAsync();
             return review;
         }
 
         public async Task<AITool> CreateAIToolAsync(CreateToolDto tool)
         {
-            List<AITool> tools = _toolDbService.Read();
             AITool newTool = new AITool
             {
-                Id = tools.Max(tool => tool.Id) + 1,
                 ToolName = tool.ToolName,
                 UseCase = tool.UseCase,
                 Category = tool.Category,
                 PricingType = tool.PricingType ?? PricingModel.Free,
-                AverageRating = 0.0
+                AverageRating = 0
             };
 
-            tools.Add(newTool);
-            _toolDbService.Write(tools);
+            _db.AiTools.Add(newTool);
+            await _db.SaveChangesAsync();
             return newTool;
         }
 
         public async Task<AITool?> DeleteAIToolAsync(int id)
         {
-            List<AITool> tools = _toolDbService.Read();
-            AITool? toolToRemove = tools.FirstOrDefault(tool => tool.Id == id);
+            AITool? toolToRemove = await _db.AiTools.FindAsync(id);
 
-            if (toolToRemove != null)
-                tools.Remove(toolToRemove);
+            if (toolToRemove == null)
+                return null;
 
-            _toolDbService.Write(tools);
+            _db.AiTools.Remove(toolToRemove);
+            await _db.SaveChangesAsync();
             
             return toolToRemove;
         }
 
         public async Task<Review?> RejectReviewAsync(int id)
         {
-            List<Review> reviews = _reviewDbService.Read();
-            Review? review = reviews.Find(review => review.Id == id);
+            Review? review = await _db.Reviews.FindAsync(id);
             if (review == null) return null;
-            review.Status = "Rejected";
-            _reviewDbService.Write(reviews);
-            _toolService.RecalculateRating(review.ToolId);
+            review.Status = ApprovalStatus.Rejected;
+            await _db.SaveChangesAsync();
             return review;
         }
     }

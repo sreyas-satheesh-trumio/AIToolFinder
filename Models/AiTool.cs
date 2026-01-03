@@ -8,4 +8,5 @@ public class AITool
     public string Category { get; set; } = default!;
     public PricingModel PricingType { get; set; } = PricingModel.Free;
     public double AverageRating { get; set; }
+    public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
