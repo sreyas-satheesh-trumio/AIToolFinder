@@ -21,7 +21,7 @@ public class ReviewService : IReviewService
         _context.Reviews.Add(review);
         _context.SaveChanges();
 
-        UpdateToolAverageRating(request.ToolId);
+       
     }
 
     public List<Review> GetAllReviews()
@@ -29,22 +29,6 @@ public class ReviewService : IReviewService
         return _context.Reviews.ToList();
     }
 
-    private void UpdateToolAverageRating(int toolId)
-    {
-        var approvedReviews = _context.Reviews
-            .Where(r => r.ToolId == toolId && r.Status == "Approved")
-            .ToList();
-
-        if (!approvedReviews.Any())
-            return;
-
-        var avgRating = approvedReviews.Average(r => r.Rating);
-
-        var tool = _context.AITools.FirstOrDefault(t => t.Id == toolId);
-        if (tool != null)
-        {
-            tool.AverageRating = avgRating;
-            _context.SaveChanges();
-        }
-    }
+   
+    
 }
