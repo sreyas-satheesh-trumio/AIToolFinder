@@ -6,10 +6,10 @@ namespace AIToolFinder.Services.Admin;
 
 public class AdminToolService : IAdminToolService
 {
-    private readonly AppDbContext _db;
+    private readonly AppDbContext _dbContext;
     public AdminToolService(AppDbContext dbContext)
     {
-        _db = dbContext;
+        _dbContext = dbContext;
     }
 
     public async Task<AITool> CreateAsync(CreateToolRequest tool)
@@ -19,25 +19,41 @@ public class AdminToolService : IAdminToolService
             ToolName = tool.ToolName,
             UseCase = tool.UseCase,
             Category = tool.Category,
-            PricingType = tool.PricingType ?? PricingModel.Free,
+            PricingType = tool.PricingType,
             AverageRating = 0
         };
 
-        _db.AiTools.Add(newTool);
-        await _db.SaveChangesAsync();
+        _dbContext.AiTools.Add(newTool);
+        await _dbContext.SaveChangesAsync();
         return newTool;
+    }
+
+    public async Task<AITool?> UpdateAsync(int id, UpdateToolRequest tool)
+    {
+        AITool? toolToUpdate = await _dbContext.AiTools.FindAsync(id);
+        if (toolToUpdate == null)
+            return null;
+
+        toolToUpdate.ToolName = tool.ToolName ?? toolToUpdate.ToolName;
+        toolToUpdate.UseCase = tool.UseCase ?? toolToUpdate.UseCase;
+        toolToUpdate.Category = tool.Category ?? toolToUpdate.Category;
+        toolToUpdate.PricingType = tool.PricingType ?? toolToUpdate.PricingType;
+
+        await _dbContext.SaveChangesAsync();
+        return toolToUpdate;
     }
 
     public async Task<AITool?> DeleteAsync(int id)
     {
-        AITool? toolToRemove = await _db.AiTools.FindAsync(id);
+        AITool? toolToRemove = await _dbContext.AiTools.FindAsync(id);
 
         if (toolToRemove == null)
             return null;
 
-        _db.AiTools.Remove(toolToRemove);
-        await _db.SaveChangesAsync();
+        _dbContext.AiTools.Remove(toolToRemove);
+        await _dbContext.SaveChangesAsync();
         return toolToRemove;
     }
+
 }
 

@@ -30,7 +30,20 @@ public class AdminController : ControllerBase
         });
     }
 
+    [HttpPut("tools/{id}")]
+    public async Task<ActionResult<AITool>> UpdateTool(int id, UpdateToolRequest tool)
+    {
+        AITool? updatedTool = await _adminToolService.UpdateAsync(id, tool);
 
+        if (updatedTool == null)
+            return NotFound();
+
+        return Ok(new
+        {
+            Message = "AI Tool Updated Successfully",
+            Tool = updatedTool
+        });
+    }
 
     [HttpDelete("tools/{id}")]
     public async Task<ActionResult<AITool>> DeleteTool(int id)
