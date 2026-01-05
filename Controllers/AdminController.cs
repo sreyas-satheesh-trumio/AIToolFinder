@@ -1,4 +1,4 @@
-
+using AIToolFinder.Dtos;
 using AIToolFinder.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +41,7 @@ public class AdminController : ControllerBase
         });
     }
 
-    [HttpPut("review/{id}/approve")]
+    [HttpPut("review/{id}/approve")] 
     public async Task<ActionResult<Review>> ApproveReview(int id)
     {
         try
@@ -51,7 +51,14 @@ public class AdminController : ControllerBase
             return Ok(new
             {
                 Message = "Review Approved Successfully",
-                AITool = updatedReview
+                AITool = new ReviewResponseDto
+                {
+                    Id = updatedReview.Id,
+                    ToolId = updatedReview.ToolId,
+                    Rating = updatedReview.Rating,
+                    Comment = updatedReview.Comment,
+                    Status = updatedReview.Status
+                }
             });
         }
         catch(Exception ex)
@@ -70,7 +77,14 @@ public class AdminController : ControllerBase
             return Ok(new
             {
                 Message = "Review Rejected Successfully",
-                AITool = updatedReview
+                AITool = new ReviewResponseDto
+                {
+                    Id = updatedReview.Id,
+                    ToolId = updatedReview.ToolId,
+                    Rating = updatedReview.Rating,
+                    Comment = updatedReview.Comment,
+                    Status = updatedReview.Status
+                }
             });
         }
         catch(Exception ex)

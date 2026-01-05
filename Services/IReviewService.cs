@@ -1,5 +1,5 @@
 public interface IReviewService
 {
-    void SubmitReview(CreateReviewRequest  review);
+    Review SubmitReview(CreateReviewRequest  review);
     List<Review> GetAllReviews();
 }

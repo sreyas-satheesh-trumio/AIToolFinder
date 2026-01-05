@@ -1,4 +1,5 @@
 
+using AIToolFinder.Dtos;
 using Microsoft.AspNetCore.Mvc;
  
 [ApiController]
@@ -16,8 +17,19 @@ public class ReviewsController : ControllerBase
     [HttpPost]
     public IActionResult Add(CreateReviewRequest request)
     {
-        _reviewService.SubmitReview(request);
-        return Ok("Review added");
+        Review newReview = _reviewService.SubmitReview(request);
+        return Ok(new
+        {
+            message = "Review added successfully",
+            review = new ReviewResponseDto
+            {
+                Id = newReview.Id,
+                ToolId = newReview.ToolId,
+                Rating = newReview.Rating,
+                Comment = newReview.Comment,
+                Status = newReview.Status
+            }
+        });
     }
  
     // GET /reviews

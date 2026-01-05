@@ -1,17 +1,18 @@
+using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore;
 
 public class ToolService : IToolService
 {
-    private readonly AIToolDbContext _dbContext;
+    private readonly AppDbContext _dbContext;
 
-    public ToolService(AIToolDbContext dbContext)
+    public ToolService(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
     public List<AITool> GetTools(FilterToolsDto? filter)
     {
-        var query = _dbContext.AITools.AsQueryable();
+        var query = _dbContext.AiTools.AsQueryable();
 
         if (filter != null)
         {
@@ -25,8 +26,7 @@ public class ToolService : IToolService
                 query = query.Where(t => t.AverageRating >= filter.Rating);
 
             if (!string.IsNullOrEmpty(filter.UseCase))
-                query = query.Where(t => t.UseCase != null &&
-                                         t.UseCase.Contains(filter.UseCase));
+                query = query.Where(t => t.UseCase != null && t.UseCase.Contains(filter.UseCase));
         }
 
         return query.ToList();
@@ -36,7 +36,7 @@ public class ToolService : IToolService
     {
         try
         {
-            var tool = _dbContext.AITools
+            var tool = _dbContext.AiTools
                 .Include(t => t.Reviews)
                 .FirstOrDefault(t => t.Id == toolId);
 
@@ -44,7 +44,7 @@ public class ToolService : IToolService
                 return false;
 
             var approvedReviews = tool.Reviews?
-                .Where(r => r.Status == "Approved")
+                .Where(r => r.Status == ApprovalStatus.Approved)
                 .ToList();
 
             tool.AverageRating = approvedReviews != null && approvedReviews.Any()

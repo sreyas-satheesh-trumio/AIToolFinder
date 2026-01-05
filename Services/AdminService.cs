@@ -7,9 +7,11 @@ namespace AIToolFinder.Services
     public class AdminService : IAdminService
     {
         private readonly AppDbContext _db;
-        public AdminService(AppDbContext dbContext)
+        private readonly IToolService _toolService;
+        public AdminService(AppDbContext dbContext, IToolService toolService)
         {
             _db = dbContext;
+            _toolService = toolService;
         }
 
         public async Task<Review?> ApproveReviewAsync(int id)
@@ -18,6 +20,7 @@ namespace AIToolFinder.Services
             if (review == null) return null;
             review.Status = ApprovalStatus.Approved;
             await _db.SaveChangesAsync();
+            _toolService.RecalculateRating(id);
             return review;
         }
 
@@ -37,9 +40,6 @@ namespace AIToolFinder.Services
             return newTool;
         }
 
-
-
-
         public async Task<AITool?> DeleteAIToolAsync(int id)
         {
             AITool? toolToRemove = await _db.AiTools.FindAsync(id);
@@ -49,10 +49,8 @@ namespace AIToolFinder.Services
 
             _db.AiTools.Remove(toolToRemove);
             await _db.SaveChangesAsync();
-            
             return toolToRemove;
         }
-
 
         public async Task<Review?> RejectReviewAsync(int id)
         {
@@ -62,8 +60,5 @@ namespace AIToolFinder.Services
             await _db.SaveChangesAsync();
             return review;
         }
-
-
-
     }
 }

@@ -1,16 +1,17 @@
 
 using AIToolFinder.Services;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 public class ReviewService : IReviewService
 {
-    private readonly ReviewDbContext _context;
+    private readonly AppDbContext _context;
 
-    public ReviewService(ReviewDbContext context)
+    public ReviewService(AppDbContext context)
     {
         _context = context;
     }
 
-    public void SubmitReview(CreateReviewRequest request)
+    public Review SubmitReview(CreateReviewRequest request)
     {
         var review = new Review
         {
@@ -20,13 +21,13 @@ public class ReviewService : IReviewService
             Status = ApprovalStatus.Pending
         };
 
-        _context.Reviews.Add(review);
+        EntityEntry<Review> result = _context.Reviews.Add(review);
         _context.SaveChanges();
+        return result.Entity;
     }
 
     public List<Review> GetAllReviews()
     {
         return _context.Reviews.ToList();
     }
-    
 }

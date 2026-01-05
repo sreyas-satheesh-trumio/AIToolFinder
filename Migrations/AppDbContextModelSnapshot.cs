@@ -54,10 +54,7 @@ namespace AIToolFinderApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AITools", t =>
-                        {
-                            t.HasCheckConstraint("CK_AITool_PricingType", "[PricingType] IN (0, 1, 2)");
-                        });
+                    b.ToTable("AiTools");
                 });
 
             modelBuilder.Entity("Review", b =>
@@ -75,22 +72,36 @@ namespace AIToolFinderApp.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)")
-                        .HasDefaultValue("Pending");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int>("ToolId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ToolId");
+
                     b.ToTable("Reviews", t =>
                         {
                             t.HasCheckConstraint("CK_Review_Rating", "[Rating] >= 1 AND [Rating] <= 5");
                         });
+                });
+
+            modelBuilder.Entity("Review", b =>
+                {
+                    b.HasOne("AITool", "AiTool")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ToolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AiTool");
+                });
+
+            modelBuilder.Entity("AITool", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

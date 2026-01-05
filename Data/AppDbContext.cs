@@ -8,19 +8,17 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) {}
 
-    [Obsolete]
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configure AITool entity
         modelBuilder.Entity<AITool>(entity =>
         {
-            entity.HasKey(e => e.Id); // Primary key
+            entity.HasKey(e => e.Id); 
 
             entity.Property(e => e.ToolName)
                 .IsRequired()
-                .HasMaxLength(100);        // Limit string length
+                .HasMaxLength(100);
 
             entity.Property(e => e.UseCase)
                 .IsRequired()
@@ -32,36 +30,44 @@ public class AppDbContext : DbContext
 
             entity.Property(e => e.PricingType)
             .IsRequired();
-            entity.HasCheckConstraint("CK_AITool_PricingType", "[PricingType] IN (0, 1, 2)");
+
+            entity.Property(e => e.PricingType)
+                .IsRequired()
+                .HasConversion<int>();
 
             entity.Property(e => e.AverageRating)
-                .HasPrecision(3, 2)       // e.g., 4.75
-                .HasDefaultValue(0);       // Default rating
+                .HasPrecision(3, 2)       
+                .HasDefaultValue(0);      
         });
 
 
          modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(r => r.Id); // ReviewId is the primary key
+            entity.HasKey(r => r.Id); 
+
+            entity.HasOne(r => r.AiTool)
+                .WithMany(t => t.Reviews)
+                .HasForeignKey(r => r.ToolId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(r => r.ToolId) 
                 .IsRequired();
 
-            entity.Property(r => r.Rating) //Rating should be between 1 and 5
+            entity.Property(r => r.Rating) 
                 .IsRequired();
-            entity.HasCheckConstraint(
-                "CK_Review_Rating",
-                "[Rating] >= 1 AND [Rating] <= 5"
-            );
 
-            entity.Property(r => r.Comment) //Optional
+            entity.ToTable(t => 
+                t.HasCheckConstraint(
+                    "CK_Review_Rating",
+                    "[Rating] >= 1 AND [Rating] <= 5"
+                ));
+
+            entity.Property(r => r.Comment) 
                 .HasMaxLength(500);
 
             entity.Property(r => r.Status)
-                .IsRequired()
-                .HasMaxLength(20)
-                .HasDefaultValue("Pending");
-
+                .HasConversion<int>()
+                .IsRequired();
         });
     }
 
