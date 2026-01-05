@@ -1,6 +1,8 @@
 using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore;
 
+namespace AIToolFinder.Services.Tools;
+
 public class ToolService : IToolService
 {
     private readonly AppDbContext _dbContext;

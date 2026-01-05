@@ -1,4 +1,6 @@
-using AIToolFinder.Services;
+using AIToolFinder.Services.Admin;
+using AIToolFinder.Services.Tools;
+using AIToolFinder.Services.Reviews;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -36,6 +38,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.Run();

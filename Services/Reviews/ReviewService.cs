@@ -1,6 +1,7 @@
 
-using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace AIToolFinder.Services.Reviews;
 
 public class ReviewService : IReviewService
 {

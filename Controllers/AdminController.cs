@@ -1,5 +1,6 @@
 using AIToolFinder.Dtos;
 using AIToolFinder.Services;
+using AIToolFinder.Services.Admin;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
