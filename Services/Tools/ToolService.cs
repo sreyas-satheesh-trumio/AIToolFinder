@@ -13,7 +13,7 @@ public class ToolService : IToolService
         _dbContext = dbContext;
     }
 
-    public List<AITool> GetTools(ToolFilterRequest? filter)
+    public List<AiTool> GetTools(ToolFilterRequest? filter)
     {
         var query = _dbContext.AiTools.AsQueryable();
 

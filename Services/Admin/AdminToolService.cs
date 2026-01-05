@@ -12,9 +12,9 @@ public class AdminToolService : IAdminToolService
         _dbContext = dbContext;
     }
 
-    public async Task<AITool> CreateAsync(CreateToolRequest tool)
+    public async Task<AiTool> CreateAsync(CreateToolRequest tool)
     {
-        AITool newTool = new AITool
+        AiTool newTool = new AiTool
         {
             ToolName = tool.ToolName,
             UseCase = tool.UseCase,
@@ -28,9 +28,9 @@ public class AdminToolService : IAdminToolService
         return newTool;
     }
 
-    public async Task<AITool?> UpdateAsync(int id, UpdateToolRequest tool)
+    public async Task<AiTool?> UpdateAsync(int id, UpdateToolRequest tool)
     {
-        AITool? toolToUpdate = await _dbContext.AiTools.FindAsync(id);
+        AiTool? toolToUpdate = await _dbContext.AiTools.FindAsync(id);
         if (toolToUpdate == null)
             return null;
 
@@ -43,9 +43,9 @@ public class AdminToolService : IAdminToolService
         return toolToUpdate;
     }
 
-    public async Task<AITool?> DeleteAsync(int id)
+    public async Task<AiTool?> DeleteAsync(int id)
     {
-        AITool? toolToRemove = await _dbContext.AiTools.FindAsync(id);
+        AiTool? toolToRemove = await _dbContext.AiTools.FindAsync(id);
 
         if (toolToRemove == null)
             return null;

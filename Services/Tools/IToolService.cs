@@ -5,6 +5,6 @@ namespace AIToolFinder.Services.Tools;
 
 public interface IToolService
 {
-    List<AITool> GetTools(ToolFilterRequest? filter);
+    List<AiTool> GetTools(ToolFilterRequest? filter);
     bool RecalculateRating(int toolId);
 }

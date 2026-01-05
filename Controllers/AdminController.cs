@@ -20,9 +20,9 @@ public class AdminController : ControllerBase
     }
 
     [HttpPost("tools")]
-    public async Task<ActionResult<AITool>> CreateTool(CreateToolRequest tool)
+    public async Task<ActionResult<AiTool>> CreateTool(CreateToolRequest tool)
     {
-        AITool newTool = await _adminToolService.CreateAsync(tool);
+        AiTool newTool = await _adminToolService.CreateAsync(tool);
         return StatusCode(201, new
         {
             Message = "AI Tool Created Successfully",
@@ -31,9 +31,9 @@ public class AdminController : ControllerBase
     }
 
     [HttpPut("tools/{id}")]
-    public async Task<ActionResult<AITool>> UpdateTool(int id, UpdateToolRequest tool)
+    public async Task<ActionResult<AiTool>> UpdateTool(int id, UpdateToolRequest tool)
     {
-        AITool? updatedTool = await _adminToolService.UpdateAsync(id, tool);
+        AiTool? updatedTool = await _adminToolService.UpdateAsync(id, tool);
 
         if (updatedTool == null)
             return NotFound();
@@ -46,9 +46,9 @@ public class AdminController : ControllerBase
     }
 
     [HttpDelete("tools/{id}")]
-    public async Task<ActionResult<AITool>> DeleteTool(int id)
+    public async Task<ActionResult<AiTool>> DeleteTool(int id)
     {
-        AITool? deletedTool = await _adminToolService.DeleteAsync(id);
+        AiTool? deletedTool = await _adminToolService.DeleteAsync(id);
 
         if (deletedTool == null)
             return NotFound();
@@ -60,7 +60,7 @@ public class AdminController : ControllerBase
         });
     }
 
-    [HttpPut("reviews/{id}/")] 
+    [HttpPut("reviews/{id}/")]
     public async Task<ActionResult<Review>> UpdateReview(int id, [FromBody] UpdateReviewRequest updateData)
     {
         try
@@ -80,7 +80,7 @@ public class AdminController : ControllerBase
                 }
             });
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return BadRequest($"Something went wrong ({ex.Message})");
         }

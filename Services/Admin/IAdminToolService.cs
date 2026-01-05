@@ -4,7 +4,7 @@ namespace AIToolFinder.Services.Admin;
 
 public interface IAdminToolService
 {
-    Task<AITool> CreateAsync(CreateToolRequest tool);
-    Task<AITool?> UpdateAsync(int id, UpdateToolRequest tool);
-    Task<AITool?> DeleteAsync(int id);
+    Task<AiTool> CreateAsync(CreateToolRequest tool);
+    Task<AiTool?> UpdateAsync(int id, UpdateToolRequest tool);
+    Task<AiTool?> DeleteAsync(int id);
 }

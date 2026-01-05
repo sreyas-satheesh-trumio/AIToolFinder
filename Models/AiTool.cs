@@ -1,6 +1,6 @@
 using AIToolFinder.Enums;
 
-public class AITool
+public class AiTool
 {
     public int Id { get; set; }
     public string ToolName { get; set; } = null!;

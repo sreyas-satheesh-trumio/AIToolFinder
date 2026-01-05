@@ -24,9 +24,9 @@ public class ReviewService : IReviewService
             Status = ApprovalStatus.Pending
         };
 
-        AITool? tool = await _context.AiTools.FindAsync(request.ToolId);
+        AiTool? tool = await _context.AiTools.FindAsync(request.ToolId);
         if (tool == null) return null;
-        
+
         EntityEntry<Review> result = await _context.Reviews.AddAsync(review);
         _context.SaveChanges();
         return result.Entity;
