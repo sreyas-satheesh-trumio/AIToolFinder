@@ -6,6 +6,6 @@ public class Review
     public int ToolId { get; set; }
     public int Rating { get; set; }
     public string? Comment { get; set; }
-    public ApprovalStatus? Status { get; set; } 
+    public ApprovalStatus? Status { get; set; } = ApprovalStatus.Pending; 
     public AITool AiTool { get; set; } = null!;
 }

@@ -1,3 +1,4 @@
+using AIToolFinder.Dtos.Tools;
 using AIToolFinder.Services.Tools;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,8 @@ public class ToolsController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetTools([FromQuery] FilterToolsDto filter)
+    public IActionResult GetAllTools([FromQuery] ToolFilterRequest filter)
     {
         return Ok(_toolService.GetTools(filter));
-    }
-
-    [HttpPost("{id}/recalculate-rating")]
-    public IActionResult RecalculateRating(int id)
-    {
-        var success = _toolService.RecalculateRating(id);
-        return success ? Ok("Rating updated") : NotFound("Tool not found");
     }
 }

@@ -1,23 +1,28 @@
 using AIToolFinder.Dtos;
+using AIToolFinder.Dtos.Tools;
 using AIToolFinder.Services;
 using AIToolFinder.Services.Admin;
+using AIToolFinder.Dtos.Reviews;
 using Microsoft.AspNetCore.Mvc;
+using AIToolFinder.Dtos.Admin;
 
 [ApiController]
 [Route("admin")]
 public class AdminController : ControllerBase
 {
-    private readonly IAdminService _adminService;
-    public AdminController(IAdminService adminService)
+    private readonly IAdminToolService _adminToolService;
+    private readonly IAdminReviewService _adminReviewService;
+
+    public AdminController(IAdminToolService adminToolService, IAdminReviewService adminReviewService)
     {
-        _adminService = adminService;
+        _adminToolService = adminToolService;
+        _adminReviewService = adminReviewService;
     }
 
-    [HttpPost("tool")]
-    public async Task<ActionResult<AITool>> AddTool(CreateToolDto tool)
+    [HttpPost("tools")]
+    public async Task<ActionResult<AITool>> CreateTool(CreateToolRequest tool)
     {
-        AITool newTool = await _adminService.CreateAIToolAsync(tool);
-
+        AITool newTool = await _adminToolService.CreateAsync(tool);
         return StatusCode(201, new
         {
             Message = "AI Tool Created Successfully",
@@ -27,10 +32,10 @@ public class AdminController : ControllerBase
 
 
 
-    [HttpDelete("tool/{id}")]
+    [HttpDelete("tools/{id}")]
     public async Task<ActionResult<AITool>> DeleteTool(int id)
     {
-        AITool? deletedTool = await _adminService.DeleteAIToolAsync(id);
+        AITool? deletedTool = await _adminToolService.DeleteAsync(id);
 
         if (deletedTool == null)
             return NotFound();
@@ -42,43 +47,17 @@ public class AdminController : ControllerBase
         });
     }
 
-    [HttpPut("review/{id}/approve")] 
-    public async Task<ActionResult<Review>> ApproveReview(int id)
+    [HttpPut("reviews/{id}/")] 
+    public async Task<ActionResult<Review>> UpdateReview(int id, [FromBody] UpdateReviewRequest updateData)
     {
         try
         {
-            Review? updatedReview = await _adminService.ApproveReviewAsync(id);
+            Review? updatedReview = await _adminReviewService.UpdateAsync(id, updateData);
             if (updatedReview == null) return NotFound();
             return Ok(new
             {
-                Message = "Review Approved Successfully",
-                AITool = new ReviewResponseDto
-                {
-                    Id = updatedReview.Id,
-                    ToolId = updatedReview.ToolId,
-                    Rating = updatedReview.Rating,
-                    Comment = updatedReview.Comment,
-                    Status = updatedReview.Status
-                }
-            });
-        }
-        catch(Exception ex)
-        {
-            return BadRequest($"Something went wrong ({ex.Message})");
-        }
-    }
-
-    [HttpPut("review/{id}/reject")]
-    public async Task<ActionResult<Review>> RejectReview(int id)
-    {
-        try
-        {
-            Review? updatedReview = await _adminService.RejectReviewAsync(id);
-            if (updatedReview == null) return NotFound();
-            return Ok(new
-            {
-                Message = "Review Rejected Successfully",
-                AITool = new ReviewResponseDto
+                Message = "Review Updated Successfully",
+                AITool = new ReviewResponse
                 {
                     Id = updatedReview.Id,
                     ToolId = updatedReview.ToolId,

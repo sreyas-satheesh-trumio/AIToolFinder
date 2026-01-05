@@ -1,6 +1,8 @@
 using AIToolFinder.Enums;
 
-public class CreateToolDto
+namespace AIToolFinder.Dtos.Tools;
+
+public class CreateToolRequest
 {
     public string ToolName { get; set; } = string.Empty;
     public string UseCase { get; set; } = string.Empty;

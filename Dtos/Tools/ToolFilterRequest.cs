@@ -1,6 +1,8 @@
 using AIToolFinder.Enums;
 
-public class FilterToolsDto
+namespace AIToolFinder.Dtos.Tools;
+
+public class ToolFilterRequest
 {
     public string? Category { get; set; }
     public PricingModel? PricingType { get; set; }

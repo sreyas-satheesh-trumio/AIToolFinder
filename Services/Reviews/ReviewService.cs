@@ -1,4 +1,6 @@
 
+using AIToolFinder.Dtos.Reviews;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace AIToolFinder.Services.Reviews;
@@ -12,7 +14,7 @@ public class ReviewService : IReviewService
         _context = context;
     }
 
-    public Review SubmitReview(CreateReviewRequest request)
+    public async Task<Review?> SubmitReview(CreateReviewRequest request)
     {
         var review = new Review
         {
@@ -22,13 +24,16 @@ public class ReviewService : IReviewService
             Status = ApprovalStatus.Pending
         };
 
-        EntityEntry<Review> result = _context.Reviews.Add(review);
+        AITool? tool = await _context.AiTools.FindAsync(request.ToolId);
+        if (tool == null) return null;
+        
+        EntityEntry<Review> result = await _context.Reviews.AddAsync(review);
         _context.SaveChanges();
         return result.Entity;
     }
 
-    public List<Review> GetAllReviews()
+    public async Task<List<Review>> GetAllReviews()
     {
-        return _context.Reviews.ToList();
+        return await _context.Reviews.ToListAsync();
     }
 }

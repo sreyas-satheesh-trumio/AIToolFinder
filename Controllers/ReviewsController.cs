@@ -1,5 +1,6 @@
 
 using AIToolFinder.Dtos;
+using AIToolFinder.Dtos.Reviews;
 using AIToolFinder.Services.Reviews;
 using Microsoft.AspNetCore.Mvc;
  
@@ -14,15 +15,24 @@ public class ReviewsController : ControllerBase
         _reviewService = reviewService;
     }
  
-    // POST /reviews
-    [HttpPost]
-    public IActionResult Add(CreateReviewRequest request)
+    [HttpGet]
+    public async Task<ActionResult<List<Review>>> GetAllReviews()
     {
-        Review newReview = _reviewService.SubmitReview(request);
+        List<Review> reviews = await _reviewService.GetAllReviews();
+        return Ok(reviews);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateReview(CreateReviewRequest request)
+    {
+        Review? newReview = await _reviewService.SubmitReview(request);
+        if (newReview == null)
+            return NotFound("AI Tool not found for the given ToolId");
+
         return Ok(new
         {
             message = "Review added successfully",
-            review = new ReviewResponseDto
+            review = new ReviewResponse
             {
                 Id = newReview.Id,
                 ToolId = newReview.ToolId,
@@ -33,12 +43,6 @@ public class ReviewsController : ControllerBase
         });
     }
  
-    // GET /reviews
-    [HttpGet]
-    public IActionResult Get()
-    {
-        return Ok(_reviewService.GetAllReviews());
-    }
 }
  
  

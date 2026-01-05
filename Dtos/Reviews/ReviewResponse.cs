@@ -1,8 +1,8 @@
 using AIToolFinder.Services;
 
-namespace AIToolFinder.Dtos;
+namespace AIToolFinder.Dtos.Reviews;
 
-public class ReviewResponseDto
+public class ReviewResponse
 {
     public int Id { get; set; }
     public int ToolId { get; set; }

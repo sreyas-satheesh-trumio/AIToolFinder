@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace AIToolFinder.Dtos.Reviews;
+
 public class CreateReviewRequest
 {
     

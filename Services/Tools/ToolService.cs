@@ -1,3 +1,4 @@
+using AIToolFinder.Dtos.Tools;
 using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ public class ToolService : IToolService
         _dbContext = dbContext;
     }
 
-    public List<AITool> GetTools(FilterToolsDto? filter)
+    public List<AITool> GetTools(ToolFilterRequest? filter)
     {
         var query = _dbContext.AiTools.AsQueryable();
 

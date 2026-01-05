@@ -1,7 +1,9 @@
+using AIToolFinder.Dtos.Reviews;
+
 namespace AIToolFinder.Services.Reviews;
 
 public interface IReviewService
 {
-    Review SubmitReview(CreateReviewRequest  review);
-    List<Review> GetAllReviews();
+    Task<Review?> SubmitReview(CreateReviewRequest  review);
+    Task<List<Review>> GetAllReviews();
 }
