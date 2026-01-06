@@ -47,4 +47,10 @@ public class ReviewService : IReviewService
         _context.SaveChanges();
         return result.Entity;
     }
+    
+    public async Task<Review?> GetOne(int id)
+    {
+        return await _context.Reviews.FindAsync(id);
+    }
+
 }

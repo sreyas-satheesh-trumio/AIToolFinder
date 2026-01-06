@@ -42,7 +42,15 @@ public class ReviewsController : ControllerBase
             }
         });
     }
- 
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Review>> GetReview(int id)
+    {
+        Review? review = await _reviewService.GetOne(id);
+
+        if (review == null) return NotFound();
+        return Ok(review);
+    }
 }
  
  
