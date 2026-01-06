@@ -60,8 +60,8 @@ public class AdminController : ControllerBase
         });
     }
 
-    [HttpPut("reviews/{id}/")]
-    public async Task<ActionResult<Review>> UpdateReview(int id, [FromBody] UpdateReviewRequest updateData)
+    [HttpPut("reviews/{id}/status")]
+    public async Task<ActionResult<Review>> UpdateReview(int id, [FromBody] UpdateApprovalStatusRequest updateData)
     {
         try
         {

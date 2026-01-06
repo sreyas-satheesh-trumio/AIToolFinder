@@ -4,6 +4,6 @@ namespace AIToolFinder.Services.Admin;
 
 public interface IAdminReviewService
 {
-    Task<Review?> UpdateAsync(int id, UpdateReviewRequest updateData);
+    Task<Review?> UpdateAsync(int id, UpdateApprovalStatusRequest updateData);
 }
 

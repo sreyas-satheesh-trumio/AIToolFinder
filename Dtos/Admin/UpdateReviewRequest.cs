@@ -3,7 +3,7 @@ using AIToolFinder.Services;
 
 namespace AIToolFinder.Dtos.Admin;
 
-public class UpdateReviewRequest
+public class UpdateApprovalStatusRequest
 {
     public ApprovalStatus? Status { get; set; } = null;
 }

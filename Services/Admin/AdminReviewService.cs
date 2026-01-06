@@ -15,7 +15,7 @@ public class AdminReviewService : IAdminReviewService
         _toolService = toolService;
     }
 
-    public async Task<Review?> UpdateAsync(int id, UpdateReviewRequest updateData)
+    public async Task<Review?> UpdateAsync(int id, UpdateApprovalStatusRequest updateData)
     {
         Review? review = await _db.Reviews.FindAsync(id);
         if (review == null) return null;
