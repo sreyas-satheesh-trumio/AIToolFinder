@@ -16,9 +16,9 @@ public class ReviewsController : ControllerBase
     }
  
     [HttpGet]
-    public async Task<ActionResult<List<Review>>> GetAllReviews()
+    public async Task<ActionResult<List<Review>>> GetAllReviews([FromQuery] ReviewFilterRequest reviewFilter)
     {
-        List<Review> reviews = await _reviewService.GetAllReviews();
+        List<Review> reviews = await _reviewService.GetAllReviews(reviewFilter);
         return Ok(reviews);
     }
 

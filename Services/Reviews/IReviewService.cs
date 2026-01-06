@@ -5,5 +5,5 @@ namespace AIToolFinder.Services.Reviews;
 public interface IReviewService
 {
     Task<Review?> SubmitReview(CreateReviewRequest  review);
-    Task<List<Review>> GetAllReviews();
+    Task<List<Review>> GetAllReviews(ReviewFilterRequest reviewFilter);
 }

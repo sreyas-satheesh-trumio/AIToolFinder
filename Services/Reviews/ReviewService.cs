@@ -14,6 +14,22 @@ public class ReviewService : IReviewService
         _context = context;
     }
 
+    public async Task<List<Review>> GetAllReviews(ReviewFilterRequest reviewFilter)
+    {
+        List<Review> allReviews = await _context.Reviews.ToListAsync();
+        
+        if (reviewFilter.ToolId != null)
+            allReviews = allReviews.Where(review => review.ToolId == reviewFilter.ToolId).ToList();
+
+        if (reviewFilter.Rating != null) 
+            allReviews = allReviews.Where(review => review.Rating >= reviewFilter.Rating).ToList();
+        
+        if (reviewFilter.Status != null)
+            allReviews = allReviews.Where(review => review.Status == reviewFilter.Status).ToList();
+        
+        return allReviews;
+    }
+
     public async Task<Review?> SubmitReview(CreateReviewRequest request)
     {
         var review = new Review
@@ -30,10 +46,5 @@ public class ReviewService : IReviewService
         EntityEntry<Review> result = await _context.Reviews.AddAsync(review);
         _context.SaveChanges();
         return result.Entity;
-    }
-
-    public async Task<List<Review>> GetAllReviews()
-    {
-        return await _context.Reviews.ToListAsync();
     }
 }
