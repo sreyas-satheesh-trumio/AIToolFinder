@@ -4,7 +4,8 @@ namespace AIToolFinder.Services.Reviews;
 
 public interface IReviewService
 {
-    Task<Review?> SubmitReview(CreateReviewRequest  review);
-    Task<List<Review>> GetAllReviews(ReviewFilterRequest reviewFilter);
-    Task<Review?> GetOne(int id);
+    Task<Review?> CreateAsync(CreateReviewRequest review);
+    Task<List<Review>> GetAllAsync(ReviewFilterRequest reviewFilter);
+    Task<Review?> GetAsync(int id);
+    Task<Review?> UpdateAsync(int id, UpdateReviewRequest updateData);
 }

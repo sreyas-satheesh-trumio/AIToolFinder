@@ -18,14 +18,14 @@ public class ReviewsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<Review>>> GetAllReviews([FromQuery] ReviewFilterRequest reviewFilter)
     {
-        List<Review> reviews = await _reviewService.GetAllReviews(reviewFilter);
+        List<Review> reviews = await _reviewService.GetAllAsync(reviewFilter);
         return Ok(reviews);
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateReview(CreateReviewRequest request)
     {
-        Review? newReview = await _reviewService.SubmitReview(request);
+        Review? newReview = await _reviewService.CreateAsync(request);
         if (newReview == null)
             return NotFound("AI Tool not found for the given ToolId");
 
@@ -46,10 +46,25 @@ public class ReviewsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Review>> GetReview(int id)
     {
-        Review? review = await _reviewService.GetOne(id);
+        Review? review = await _reviewService.GetAsync(id);
 
         if (review == null) return NotFound();
         return Ok(review);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Review>> UpdateReview(int id, UpdateReviewRequest updateData)
+    {
+        Review? updatedReview = await _reviewService.UpdateAsync(id, updateData);
+
+        if (updatedReview == null)
+            return NotFound();
+
+        return Ok(new
+        {
+            Message = "Review Updated Successfully",
+            Review = updatedReview
+        });
     }
 }
  

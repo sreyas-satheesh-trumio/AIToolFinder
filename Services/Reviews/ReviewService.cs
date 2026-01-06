@@ -14,7 +14,7 @@ public class ReviewService : IReviewService
         _dbContext = context;
     }
 
-    public async Task<List<Review>> GetAllReviews(ReviewFilterRequest reviewFilter)
+    public async Task<List<Review>> GetAllAsync(ReviewFilterRequest reviewFilter)
     {
         List<Review> allReviews = await _dbContext.Reviews.ToListAsync();
         
@@ -30,7 +30,7 @@ public class ReviewService : IReviewService
         return allReviews;
     }
 
-    public async Task<Review?> SubmitReview(CreateReviewRequest request)
+    public async Task<Review?> CreateAsync(CreateReviewRequest request)
     {
         var review = new Review
         {
@@ -48,9 +48,26 @@ public class ReviewService : IReviewService
         return result.Entity;
     }
     
-    public async Task<Review?> GetOne(int id)
+    public async Task<Review?> GetAsync(int id)
     {
         return await _dbContext.Reviews.FindAsync(id);
     }
 
+    public async Task<Review?> UpdateAsync(int id, UpdateReviewRequest updateData)
+    {
+        Review? reviewToUpdate = _dbContext.Reviews.Find(id);
+
+        if (reviewToUpdate == null) return null;
+
+        if (updateData.Rating != null)
+            reviewToUpdate.Rating = (int)updateData.Rating;
+        
+        if (updateData.Comment != null)
+            reviewToUpdate.Comment = updateData.Comment;
+        
+        reviewToUpdate.Status = ApprovalStatus.Pending;
+
+        await _dbContext.SaveChangesAsync();
+        return reviewToUpdate;
+    }
 }
