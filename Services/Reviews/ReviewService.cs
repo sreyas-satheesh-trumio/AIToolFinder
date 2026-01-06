@@ -7,16 +7,16 @@ namespace AIToolFinder.Services.Reviews;
 
 public class ReviewService : IReviewService
 {
-    private readonly AppDbContext _context;
+    private readonly AppDbContext _dbContext;
 
     public ReviewService(AppDbContext context)
     {
-        _context = context;
+        _dbContext = context;
     }
 
     public async Task<List<Review>> GetAllReviews(ReviewFilterRequest reviewFilter)
     {
-        List<Review> allReviews = await _context.Reviews.ToListAsync();
+        List<Review> allReviews = await _dbContext.Reviews.ToListAsync();
         
         if (reviewFilter.ToolId != null)
             allReviews = allReviews.Where(review => review.ToolId == reviewFilter.ToolId).ToList();
@@ -40,17 +40,17 @@ public class ReviewService : IReviewService
             Status = ApprovalStatus.Pending
         };
 
-        AiTool? tool = await _context.AiTools.FindAsync(request.ToolId);
+        AiTool? tool = await _dbContext.AiTools.FindAsync(request.ToolId);
         if (tool == null) return null;
 
-        EntityEntry<Review> result = await _context.Reviews.AddAsync(review);
-        _context.SaveChanges();
+        EntityEntry<Review> result = await _dbContext.Reviews.AddAsync(review);
+        _dbContext.SaveChanges();
         return result.Entity;
     }
     
     public async Task<Review?> GetOne(int id)
     {
-        return await _context.Reviews.FindAsync(id);
+        return await _dbContext.Reviews.FindAsync(id);
     }
 
 }
