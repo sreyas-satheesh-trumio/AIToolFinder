@@ -13,7 +13,7 @@ public class ToolService : IToolService
         _dbContext = dbContext;
     }
 
-    public List<AiTool> GetTools(ToolFilterRequest? filter)
+    public async Task<List<AiTool>> GetAllAsync(ToolFilterRequest? filter)
     {
         var query = _dbContext.AiTools.AsQueryable();
 
@@ -32,7 +32,7 @@ public class ToolService : IToolService
                 query = query.Where(t => t.UseCase != null && t.UseCase.Contains(filter.UseCase));
         }
 
-        return query.ToList();
+        return await query.ToListAsync();
     }
 
     public async Task<bool> RecalculateRating(int toolId)

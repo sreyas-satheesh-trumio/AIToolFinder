@@ -14,8 +14,17 @@ public class ToolsController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAllTools([FromQuery] ToolFilterRequest filter)
+    public async Task<ActionResult<List<ToolResponse>>> GetAllTools([FromQuery] ToolFilterRequest filter)
     {
-        return Ok(_toolService.GetTools(filter));
+        List<AiTool> tools = await _toolService.GetAllAsync(filter);
+        return Ok(tools.Select(tool => new ToolResponse
+        {
+            Id = tool.Id,
+            ToolName = tool.ToolName,
+            Category = tool.Category,
+            UseCase = tool.UseCase,
+            PricingType = tool.PricingType,
+            AverageRating = tool.AverageRating
+        }));
     }
 }
