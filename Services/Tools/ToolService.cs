@@ -35,19 +35,19 @@ public class ToolService : IToolService
         return query.ToList();
     }
 
-    public bool RecalculateRating(int toolId)
+    public async Task<bool> RecalculateRating(int toolId)
     {
         try
         {
-            AiTool? tool = _dbContext.AiTools.Find(toolId);
+            AiTool? tool = await _dbContext.AiTools.FindAsync(toolId);
 
             if (tool == null) return true;
 
-            List<Review> reviews = _dbContext.Reviews.Where(review => 
+            List<Review> reviews = await _dbContext.Reviews.Where(review => 
                     review.Status == ApprovalStatus.Approved && 
                     review.ToolId == toolId && 
                     !review.IsDeleted
-                ).ToList();
+                ).ToListAsync();
 
             if (!reviews.Any()) return true;
 
@@ -60,7 +60,6 @@ public class ToolService : IToolService
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-
             return false;
         }
     }
