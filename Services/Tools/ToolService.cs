@@ -16,7 +16,7 @@ public class ToolService : IToolService
 
     public async Task<List<AiTool>> GetAllAsync(ToolFilterRequest? filter)
     {
-        var query = _dbContext.AiTools.AsQueryable();
+        var query = _dbContext.AiTools.AsQueryable().Where(tool => !tool.IsDeleted);
 
         if (filter != null)
         {
@@ -34,6 +34,12 @@ public class ToolService : IToolService
         }
 
         return await query.ToListAsync();
+    }
+
+    public async Task<AiTool?> GetAsync(int id)
+    {
+        AiTool? tool = _dbContext.AiTools.FirstOrDefault(tool => tool.Id == id && !tool.IsDeleted);
+        return tool;
     }
 
     public async Task<bool> RecalculateRating(int toolId)
@@ -64,11 +70,4 @@ public class ToolService : IToolService
             return false;
         }
     }
-
-    public async Task<AiTool?> GetAsync(int id)
-    {
-        AiTool? tool = await _dbContext.AiTools.FindAsync(id);
-        return tool;
-    }
-
 }

@@ -45,12 +45,12 @@ public class AdminToolService : IAdminToolService
 
     public async Task<AiTool?> DeleteAsync(int id)
     {
-        AiTool? toolToRemove = await _dbContext.AiTools.FindAsync(id);
+        AiTool? toolToRemove = _dbContext.AiTools.FirstOrDefault(tool => tool.Id == id && !tool.IsDeleted);
 
         if (toolToRemove == null)
             return null;
 
-        _dbContext.AiTools.Remove(toolToRemove);
+        toolToRemove.IsDeleted = true;
         await _dbContext.SaveChangesAsync();
         return toolToRemove;
     }
