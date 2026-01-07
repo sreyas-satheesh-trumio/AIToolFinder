@@ -27,4 +27,22 @@ public class ToolsController : ControllerBase
             AverageRating = tool.AverageRating
         }));
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ToolResponse>> GetTool(int id)
+    {
+        AiTool? tool = await _toolService.GetAsync(id);
+
+        if (tool == null) return NotFound();
+
+        return Ok(new ToolResponse
+        {
+            Id = tool.Id,
+            ToolName = tool.ToolName,
+            Category = tool.Category,
+            UseCase = tool.UseCase,
+            PricingType = tool.PricingType,
+            AverageRating = tool.AverageRating
+        });
+    }
 }

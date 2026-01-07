@@ -1,6 +1,7 @@
 using AIToolFinder.Dtos.Tools;
 using AIToolFinder.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AIToolFinder.Services.Tools;
 
@@ -63,4 +64,11 @@ public class ToolService : IToolService
             return false;
         }
     }
+
+    public async Task<AiTool?> GetAsync(int id)
+    {
+        AiTool? tool = await _dbContext.AiTools.FindAsync(id);
+        return tool;
+    }
+
 }

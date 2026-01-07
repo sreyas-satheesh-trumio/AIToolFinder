@@ -6,5 +6,6 @@ namespace AIToolFinder.Services.Tools;
 public interface IToolService
 {
     Task<List<AiTool>> GetAllAsync(ToolFilterRequest? filter);
+    Task<AiTool?> GetAsync(int id);
     Task<bool> RecalculateRating(int toolId);
 }
