@@ -21,7 +21,7 @@ public class AdminReviewService : IAdminReviewService
         if (review == null) return null;
         review.Status = updateData.Status ?? review.Status;
         await _db.SaveChangesAsync();
-        _toolService.RecalculateRating(id);
+        _toolService.RecalculateRating(review.ToolId);
         return review;
     }
 }

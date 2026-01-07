@@ -20,7 +20,7 @@ namespace AIToolFinderApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AITool", b =>
+            modelBuilder.Entity("AiTool", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,6 +69,9 @@ namespace AIToolFinderApp.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -90,7 +93,7 @@ namespace AIToolFinderApp.Migrations
 
             modelBuilder.Entity("Review", b =>
                 {
-                    b.HasOne("AITool", "AiTool")
+                    b.HasOne("AiTool", "AiTool")
                         .WithMany("Reviews")
                         .HasForeignKey("ToolId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -99,7 +102,7 @@ namespace AIToolFinderApp.Migrations
                     b.Navigation("AiTool");
                 });
 
-            modelBuilder.Entity("AITool", b =>
+            modelBuilder.Entity("AiTool", b =>
                 {
                     b.Navigation("Reviews");
                 });

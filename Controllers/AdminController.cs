@@ -61,7 +61,7 @@ public class AdminController : ControllerBase
     }
 
     [HttpPut("reviews/{id}/status")]
-    public async Task<ActionResult<Review>> UpdateReview(int id, [FromBody] UpdateApprovalStatusRequest updateData)
+    public async Task<ActionResult<ReviewResponse>> UpdateReview(int id, [FromBody] UpdateApprovalStatusRequest updateData)
     {
         try
         {

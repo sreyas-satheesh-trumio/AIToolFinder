@@ -39,27 +39,28 @@ public class ToolService : IToolService
     {
         try
         {
-            var tool = _dbContext.AiTools
-                .Include(t => t.Reviews)
-                .FirstOrDefault(t => t.Id == toolId);
+            AiTool? tool = _dbContext.AiTools.Find(toolId);
 
-            if (tool == null)
-                return false;
+            if (tool == null) return true;
 
-            var approvedReviews = tool.Reviews?
-                .Where(r => r.Status == ApprovalStatus.Approved)
-                .ToList();
+            List<Review> reviews = _dbContext.Reviews.Where(review => 
+                    review.Status == ApprovalStatus.Approved && 
+                    review.ToolId == toolId && 
+                    !review.IsDeleted
+                ).ToList();
 
-            tool.AverageRating = approvedReviews != null && approvedReviews.Any()
-                ? approvedReviews.Average(r => r.Rating)
-                : 0;
+            if (!reviews.Any()) return true;
 
+            double avg = reviews.Average(review => review.Rating);
+            tool.AverageRating = avg;
             _dbContext.SaveChanges();
+
             return true;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+
             return false;
         }
     }

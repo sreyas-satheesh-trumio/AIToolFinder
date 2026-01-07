@@ -16,7 +16,7 @@ public class ReviewService : IReviewService
 
     public async Task<List<Review>> GetAllAsync(ReviewFilterRequest reviewFilter)
     {
-        List<Review> allReviews = await _dbContext.Reviews.ToListAsync();
+        List<Review> allReviews = await _dbContext.Reviews.Where(review => !review.IsDeleted).ToListAsync();
         
         if (reviewFilter.ToolId != null)
             allReviews = allReviews.Where(review => review.ToolId == reviewFilter.ToolId).ToList();
@@ -32,16 +32,17 @@ public class ReviewService : IReviewService
 
     public async Task<Review?> CreateAsync(CreateReviewRequest request)
     {
+        AiTool? tool = await _dbContext.AiTools.FindAsync(request.ToolId);
+        if (tool == null) return null;
+
         var review = new Review
         {
             ToolId = request.ToolId,
             Rating = request.Rating,
             Comment = request.Comment,
-            Status = ApprovalStatus.Pending
+            Status = ApprovalStatus.Pending,
+            IsDeleted = false
         };
-
-        AiTool? tool = await _dbContext.AiTools.FindAsync(request.ToolId);
-        if (tool == null) return null;
 
         EntityEntry<Review> result = await _dbContext.Reviews.AddAsync(review);
         _dbContext.SaveChanges();
@@ -50,12 +51,12 @@ public class ReviewService : IReviewService
     
     public async Task<Review?> GetAsync(int id)
     {
-        return await _dbContext.Reviews.FindAsync(id);
+        return await _dbContext.Reviews.FirstOrDefaultAsync(review => review.Id == id && !review.IsDeleted);
     }
 
     public async Task<Review?> UpdateAsync(int id, UpdateReviewRequest updateData)
     {
-        Review? reviewToUpdate = _dbContext.Reviews.Find(id);
+        Review? reviewToUpdate = await _dbContext.Reviews.FirstOrDefaultAsync(review => review.Id == id && !review.IsDeleted);
 
         if (reviewToUpdate == null) return null;
 
@@ -69,5 +70,16 @@ public class ReviewService : IReviewService
 
         await _dbContext.SaveChangesAsync();
         return reviewToUpdate;
+    }
+
+    public async Task<Review?> DeleteAsync(int id)
+    {
+        Review? reviewToDelete = await _dbContext.Reviews.FindAsync(id);
+
+        if (reviewToDelete == null) return null;
+
+        reviewToDelete.IsDeleted = true;
+        await _dbContext.SaveChangesAsync();
+        return reviewToDelete;
     }
 }

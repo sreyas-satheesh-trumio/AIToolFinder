@@ -16,14 +16,21 @@ public class ReviewsController : ControllerBase
     }
  
     [HttpGet]
-    public async Task<ActionResult<List<Review>>> GetAllReviews([FromQuery] ReviewFilterRequest reviewFilter)
+    public async Task<ActionResult<List<ReviewResponse>>> GetAllReviews([FromQuery] ReviewFilterRequest reviewFilter)
     {
         List<Review> reviews = await _reviewService.GetAllAsync(reviewFilter);
-        return Ok(reviews);
+        return Ok(reviews.Select(review => new ReviewResponse
+        {
+            Id = review.Id,
+            ToolId = review.ToolId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            Status = review.Status
+        }));
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateReview(CreateReviewRequest request)
+    public async Task<ActionResult<ReviewResponse>> CreateReview(CreateReviewRequest request)
     {
         Review? newReview = await _reviewService.CreateAsync(request);
         if (newReview == null)
@@ -44,16 +51,23 @@ public class ReviewsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Review>> GetReview(int id)
+    public async Task<ActionResult<ReviewResponse>> GetReview(int id)
     {
         Review? review = await _reviewService.GetAsync(id);
 
         if (review == null) return NotFound();
-        return Ok(review);
+        return Ok(new ReviewResponse
+        {
+            Id = review.Id,
+            ToolId = review.ToolId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            Status = review.Status
+        });
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<Review>> UpdateReview(int id, UpdateReviewRequest updateData)
+    public async Task<ActionResult<ReviewResponse>> UpdateReview(int id, UpdateReviewRequest updateData)
     {
         Review? updatedReview = await _reviewService.UpdateAsync(id, updateData);
 
@@ -63,7 +77,35 @@ public class ReviewsController : ControllerBase
         return Ok(new
         {
             Message = "Review Updated Successfully",
-            Review = updatedReview
+            Review = new ReviewResponse 
+            {
+                Id = updatedReview.Id,
+                ToolId = updatedReview.ToolId,
+                Rating = updatedReview.Rating,
+                Comment = updatedReview.Comment,
+                Status = updatedReview.Status
+            }
+        });
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<ReviewResponse>> DeleteReview(int id)
+    {
+        Review? deletedReview = await _reviewService.DeleteAsync(id);
+
+        if (deletedReview == null) return NotFound();
+
+        return Ok(new
+        {
+            Message = "Review Deleted Successfully",
+            Review = new ReviewResponse 
+            {
+                Id = deletedReview.Id,
+                ToolId = deletedReview.ToolId,
+                Rating = deletedReview.Rating,
+                Comment = deletedReview.Comment,
+                Status = deletedReview.Status
+            }
         });
     }
 }
